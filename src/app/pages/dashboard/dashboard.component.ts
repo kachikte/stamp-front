@@ -162,18 +162,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getIndicator(idc: string) {
-    if (idc === '0') {
-      this.selIndicator = 0;
-    } else if (idc === '1') {
-      this.selIndicator = 1;
-    } else if (idc === '2') {
-      this.selIndicator = 2;
-    } else if (idc === '3') {
-      this.selIndicator = 3;
-    } else if (idc === '4') {
-      this.selIndicator = 4;
-    }
+    this.selIndicator = +idc;
   }
+
+  // getIndicator(idc: string) {
+  //   if (idc === '0') {
+  //     this.selIndicator = 0;
+  //   } else if (idc === '1') {
+  //     this.selIndicator = 1;
+  //   } else if (idc === '2') {
+  //     this.selIndicator = 2;
+  //   } else if (idc === '3') {
+  //     this.selIndicator = 3;
+  //   } else if (idc === '4') {
+  //     this.selIndicator = 4;
+  //   }
+  // }
 
   resetIndicator() {
     this.selIndicator = 0;
