@@ -188,6 +188,8 @@
 <!--            </div>-->
 <!--          </div>-->
 <!--        </div>-->
+        <button class="btn btn-danger" (click)="getIndicator('0')" style="margin-left: 5px;">Admin Reset</button>
+        <br>
       <div>Select a Trading Member</div>
       <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)">
         <option *ngFor="let tMem of tradingMembersArr" value="{{tMem}}">{{tMem}}</option>
@@ -235,7 +237,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-              <h2 class="text-white mb-0">Sales value</h2>
+              <h2 class="text-white mb-0">Trade Values</h2>
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
@@ -274,7 +276,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h2 class="mb-0">Total orders</h2>
+              <h2 class="mb-0">Parties</h2>
             </div>
           </div>
         </div>

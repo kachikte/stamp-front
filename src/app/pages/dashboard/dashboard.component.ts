@@ -162,7 +162,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getIndicator(idc: string) {
-    if (idc === '1') {
+    if (idc === '0') {
+      this.selIndicator = 0;
+    } else if (idc === '1') {
       this.selIndicator = 1;
     } else if (idc === '2') {
       this.selIndicator = 2;
