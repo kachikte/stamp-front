@@ -13,6 +13,7 @@ import {Market} from '../../model/Market';
 import {TradingClient} from '../../model/TradingClient';
 import {Trade} from '../../model/Trade';
 import {Party} from '../../model/Party';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,22 @@ import {Party} from '../../model/Party';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  chosenSelection = 'admin';
+
+  tmTotalStampDuty = 0;
+  tmTotalGrossAmount = 0;
+  tmTotalExchangeFees = 0;
+
+  tcTotalStampDuty = 0;
+  tcTotalGrossAmount = 0;
+  tcTotalExchangeFees = 0;
+
+  tTotalQuantity = 0;
+  tTotalPrice = 0;
+  tTotalGrossTradeAmount = 0;
+
+  username = localStorage.getItem('username');
+  password = localStorage.getItem('password');
 
   marketPlaceData = data;
   marketData = new Market();
@@ -82,9 +99,12 @@ export class DashboardComponent implements OnInit {
 			data: chartExample1.data
       // tslint:disable-next-line:indent
 		});
+
+    this.confirmIdentity(this.username, this.password);
   }
 
-
+  constructor(private router: Router) {
+  }
 
   getDataRespectively() {
     console.log('==========This is the data================');
@@ -114,16 +134,27 @@ export class DashboardComponent implements OnInit {
           }
           this.pl = parties.length;
 
+          this.tTotalQuantity += +trade.quantity;
+          this.tTotalPrice += +trade.price;
+          this.tTotalGrossTradeAmount += +trade.grossTradeAmount;
           this.tradesArr.push(trade.securityCode);
         }
 
+        this.tcTotalStampDuty += +tradingClient.totalStampDutyFees;
+        this.tcTotalGrossAmount += +tradingClient.totalGrossAmount;
+        this.tcTotalExchangeFees += +tradingClient.totalExchangeFees;
         this.tradingClientsArr.push(tradingClient.accountNumber);
       }
 
+      // tradingMember.totalStampDutyFees = (tradingMember.totalStampDutyFees).replace(/^0+/, '');
+      this.tmTotalStampDuty += (+tradingMember.totalStampDutyFees);
+      this.tmTotalGrossAmount += (+tradingMember.totalGrossAmount);
+      this.tmTotalExchangeFees += parseFloat(tradingMember.totalExchangeFees);
       tradingMembers.push(tradingMember.tradingMemberCode);
     }
 
     this.tradingMembersArr = tradingMembers;
+    this.tradingMembersArr.push('Select ...');
     // console.log(this.tradingMembersArr);
 
     const tradingMemberSet = new Set(this.tradingMembersArr);
@@ -132,12 +163,14 @@ export class DashboardComponent implements OnInit {
     this.tml = tradingMemberSet.size;
 
 
+    this.tradingClientsArr.push('Select ...');
     const tradingClientSet = new Set(this.tradingClientsArr);
     // @ts-ignore
     this.tradingClientsArr = tradingClientSet;
     this.tcl = tradingClientSet.size;
 
 
+    this.tradesArr.push('Select ...');
     const tradeSet = new Set(this.tradesArr);
     // @ts-ignore
     this.tradesArr = tradeSet;
@@ -186,6 +219,28 @@ export class DashboardComponent implements OnInit {
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.dataS;
     this.salesChart.update();
+  }
+
+  confirmIdentity(username: string, password: string) {
+    // if (username==='a' && password==='a') {
+    //   this.router.navigate(['']);
+    // }
+    if (username === 'admin@stampduty' && password === 'admin@stampduty') {
+      this.chosenSelection = 'admin';
+      this.selIndicator = 0;
+    } else if (username === 'tm@stampduty' && password === 'tm@stampduty') {
+      this.chosenSelection = 'tradingMember';
+      this.selIndicator = 1;
+    } else if (username === 'tc@stampduty' && password === 'tc@stampduty') {
+      this.chosenSelection = 'tradingClient';
+      this.selIndicator = 2;
+    } else if (username === 't@stampduty' && password === 't@stampduty') {
+      this.chosenSelection = 'trade';
+      this.selIndicator = 3;
+    } else {
+      localStorage.setItem('invalidLogin', 'error');
+      this.router.navigate(['/login']);
+    }
   }
 
 }
