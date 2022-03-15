@@ -1,0 +1,43 @@
+{
+  "users": {
+    "admin": [
+      {
+        "username": "admin@stampduty",
+        "password": "admin@stampduty",
+        "role": "superAdmin"
+      },
+      {
+        "username": "tm@stampduty",
+        "password": "tm@stampduty",
+        "role": "adminTm"
+      },
+      {
+        "username": "tc@stampduty",
+        "password": "tc@stampduty",
+        "role": "adminTc"
+      },
+      {
+        "username": "t@stampduty",
+        "password": "t@stampduty",
+        "role": "adminT"
+      }
+    ],
+    "tradingMember": [
+      {
+        "username": "dsbs@stampduty",
+        "password": "dsbs@stampduty",
+        "role": "tradingMember"
+      },
+      {
+        "username": "dsbs@stampduty",
+        "password": "dsbs@stampduty",
+        "role": "tradingMember"
+      },
+      {
+        "username": "dsbs@stampduty",
+        "password": "dsbs@stampduty",
+        "role": "tradingMember"
+      }
+    ]
+  }
+}
