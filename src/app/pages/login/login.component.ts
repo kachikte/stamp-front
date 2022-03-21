@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit(form: NgForm) {
     // tslint:disable-next-line:max-line-length
-    this.loginSer.checkLogin(form.controls.username.value, form.controls.password.value) ? this.router.navigate(['dashboard']) : this.router.navigate(['login']);
+    this.loginSer.checkLogin(form.controls.username.value, form.controls.password.value) ? this.router.navigate(['/market-dashboard']) : this.router.navigate(['login']);
   }
 
 }

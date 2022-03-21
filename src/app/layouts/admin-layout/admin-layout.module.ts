@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ComponentsModule} from '../../components/components.module';
 import {IgxHierarchicalGridModule} from 'igniteui-angular';
 import {NgxPayPalModule} from 'ngx-paypal';
+import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -36,6 +37,7 @@ import {NgxPayPalModule} from 'ngx-paypal';
     TablesComponent,
     IconsComponent,
     MapsComponent,
+    MarketDashboardComponent
   ]
 })
 
