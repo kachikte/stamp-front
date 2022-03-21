@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { IgxHierarchicalGridModule } from 'igniteui-angular';
+import {DataService} from './services/data/data.service';
+import {NgxPayPalModule} from 'ngx-paypal';
 // import {IgxGridColumnModule} from 'igniteui-angular/lib/grids/columns/column.module';
 
 
@@ -28,14 +30,15 @@ import { IgxHierarchicalGridModule } from 'igniteui-angular';
     RouterModule,
     AppRoutingModule,
     // IgxGridColumnModule,
-    IgxHierarchicalGridModule
+    IgxHierarchicalGridModule,
+    NgxPayPalModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

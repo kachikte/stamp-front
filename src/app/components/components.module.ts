@@ -8,26 +8,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GridDataComponent } from './grid-data/grid-data.component';
 // import {IgxGridColumnModule} from 'igniteui-angular/lib/grids/columns/column.module';
 import {IgxHierarchicalGridModule} from 'igniteui-angular';
+import {NgxPayPalModule} from 'ngx-paypal';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule,
-    // IgxGridColumnModule,
-    IgxHierarchicalGridModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule,
+        // IgxGridColumnModule,
+        IgxHierarchicalGridModule,
+        NgxPayPalModule
+    ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    GridDataComponent
+    GridDataComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    GridDataComponent
+    GridDataComponent,
   ]
 })
 export class ComponentsModule { }

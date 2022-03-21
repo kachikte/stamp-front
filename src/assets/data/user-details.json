@@ -1,42 +1,155 @@
 {
   "users": {
-    "admin": [
+    "dets": [
       {
         "username": "admin@stampduty",
         "password": "admin@stampduty",
+        "name": "superAdmin",
         "role": "superAdmin"
       },
       {
         "username": "tm@stampduty",
         "password": "tm@stampduty",
+        "name": "adminTm",
         "role": "adminTm"
       },
       {
         "username": "tc@stampduty",
         "password": "tc@stampduty",
+        "name": "adminTc",
         "role": "adminTc"
       },
       {
         "username": "t@stampduty",
         "password": "t@stampduty",
+        "name": "adminT",
         "role": "adminT"
-      }
-    ],
-    "tradingMember": [
-      {
-        "username": "dsbs@stampduty",
-        "password": "dsbs@stampduty",
-        "role": "tradingMember"
       },
       {
         "username": "dsbs@stampduty",
         "password": "dsbs@stampduty",
+        "name": "dsbs",
         "role": "tradingMember"
       },
       {
-        "username": "dsbs@stampduty",
-        "password": "dsbs@stampduty",
+        "username": "sisb@stampduty",
+        "password": "sisb@stampduty",
+        "name": "sisb",
         "role": "tradingMember"
+      },
+      {
+        "username": "eqtl@stampduty",
+        "password": "eqtl@stampduty",
+        "name": "eqtl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "apt@stampduty",
+        "password": "apt@stampduty",
+        "name": "apt",
+        "role": "tradingMember"
+      },
+      {
+        "username": "fbc@stampduty",
+        "password": "fbc@stampduty",
+        "name": "fbc",
+        "role": "tradingMember"
+      },
+      {
+        "username": "apel@stampduty",
+        "password": "apel@stampduty",
+        "name": "apel",
+        "role": "tradingMember"
+      },
+      {
+        "username": "nova@stampduty",
+        "password": "nova@stampduty",
+        "name": "nova",
+        "role": "tradingMember"
+      },
+      {
+        "username": "sti@stampduty",
+        "password": "sti@stampduty",
+        "name": "sti",
+        "role": "tradingMember"
+      },
+      {
+        "username": "ffcl@stampduty",
+        "password": "ffcl@stampduty",
+        "name": "ffcl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "sisl@stampduty",
+        "password": "sisl@stampduty",
+        "name": "sisl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "pacs@stampduty",
+        "password": "pacs@stampduty",
+        "name": "pacs",
+        "role": "tradingMember"
+      },
+      {
+        "username": "clientOne@stampduty",
+        "password": "clientOne@stampduty",
+        "name": "0130511408",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientTwo@stampduty",
+        "password": "clientTwo@stampduty",
+        "name": "0009742161",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientThree@stampduty",
+        "password": "clientThree@stampduty",
+        "name": "0130476834",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientFour@stampduty",
+        "password": "clientFour@stampduty",
+        "name": "0066312233",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientFive@stampduty",
+        "password": "clientFive@stampduty",
+        "name": "0130685421",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientSix@stampduty",
+        "password": "clientSix@stampduty",
+        "name": "0130707779",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientSeven@stampduty",
+        "password": "clientSeven@stampduty",
+        "name": "0130591261",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientEight@stampduty",
+        "password": "clientEight@stampduty",
+        "name": "0130701097",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientNine@stampduty",
+        "password": "clientNine@stampduty",
+        "name": "0130675342",
+        "role": "tradingClient"
+      },
+      {
+        "username": "clientTen@stampduty",
+        "password": "clientTen@stampduty",
+        "name": "0059960294",
+        "role": "tradingClient"
       }
     ]
   }

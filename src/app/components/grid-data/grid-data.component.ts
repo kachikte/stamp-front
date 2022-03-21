@@ -2,15 +2,17 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {IColumnPipeArgs, IgxColumnComponent} from 'igniteui-angular';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 // @ts-ignore
-import * as data from '../../../assets/data/data.json';
 import {TradingMember} from '../../model/TradingMember';
 import {TradingClient} from '../../model/TradingClient';
 import {Trade} from '../../model/Trade';
+import {DataService} from '../../services/data/data.service';
+import {Party} from '../../model/Party';
 
 @Component({
   selector: 'app-grid-data',
   templateUrl: './grid-data.component.html',
-  styleUrls: ['./grid-data.component.css']
+  styleUrls: ['./grid-data.component.css'],
+  providers: [DataService]
 })
 export class GridDataComponent implements OnInit, OnChanges {
 
@@ -25,7 +27,7 @@ export class GridDataComponent implements OnInit, OnChanges {
     digitsInfo: '1.2-2'
   };
 
-  marketData = data;
+  marketData;
   @Input() code: any;
   @Input() indicator = 0;
   // title = "Stamp Duty Data";
@@ -33,18 +35,28 @@ export class GridDataComponent implements OnInit, OnChanges {
   tradingMembers: any;
   tradingClients: any;
 
-  tradM: any[] | null = [];
+  tradM: any;
   tradC: any[] | null = [];
   tradT: any[] | null = [];
+  prT: any[] | null = [];
 
   items: any;
 
   @Input() myTestData: string | undefined;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private dataSer: DataService) {
+    this.marketData = this.dataSer.getData();
     if (this.indicator === 0) {
       // @ts-ignore
       this.tradingMembers = this.marketData.marketData.market.tradingMembers;
+      console.log('yen yenn yenn');
+      console.log(this.tradingMembers);
+    } else if (this.indicator === 1) {
+      const tradingMm = this.dataSer.getSpecificTradingMember(localStorage.getItem('name'));
+      // @ts-ignore
+      this.tradM = tradingMm.tradingClients;
+      // console.log('yen yenn yenn');
+      // console.log(this.tradM);
     }
   }
 
@@ -53,11 +65,15 @@ export class GridDataComponent implements OnInit, OnChanges {
     const trllc: TradingClient[] = [];
     const trc: TradingClient[] = [];
 
+
     const trllt: Trade[] = [];
     const trt: Trade[] = [];
 
+    const prllt: Party[] = [];
+    const prt: Party[] = [];
+
     // @ts-ignore
-    for (const tradCll of this.marketData.marketData.market.tradingMembers) {
+    for (const tradCll of this.marketData.marketData.market[0].tradingMembers) {
       for (const tcn of tradCll.tradingClients) {
         trllc.push(tcn);
       }
@@ -70,6 +86,13 @@ export class GridDataComponent implements OnInit, OnChanges {
       }
     }
 
+    for (const prTll of trllt) {
+      // @ts-ignore
+      for (const pr of prTll.parties) {
+        prllt.push(pr);
+      }
+    }
+
     if (this.indicator === 1) {
       // @ts-ignore
       for (const tradMem of this.marketData.marketData.market.tradingMembers) {
@@ -79,8 +102,6 @@ export class GridDataComponent implements OnInit, OnChanges {
       }
 
       this.tradM = trm;
-      console.log('========This is what I need');
-      console.log(this.tradM);
     }
 
     if (this.indicator === 2) {
@@ -104,8 +125,15 @@ export class GridDataComponent implements OnInit, OnChanges {
     }
 
 
-    // console.log("========This is what I need again");
-    // console.log(tradd);
+    if (this.indicator === 4) {
+      for (const prat of prllt) {
+        if (prat.partyId === this.code) {
+          prt.push(prat);
+        }
+      }
+
+      this.prT = prt;
+    }
 
   }
 

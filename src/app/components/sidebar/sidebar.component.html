@@ -96,6 +96,8 @@
               </a>
           </li>
       </ul>
+
+      <ngx-paypal *ngIf="role==='tradingMember'" [config]="payPalConfig"></ngx-paypal>
       <!-- Divider -->
       <hr class="my-3">
       <!-- Heading -->

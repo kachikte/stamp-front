@@ -21,15 +21,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    if (this.username === 'admin@stampduty') {
-      this.name = 'FIRS ADMIN';
-    } else if (this.username === 'tm@stampduty') {
-      this.name = 'TRADING MEMBER';
-    } else if (this.username === 'tc@stampduty') {
-      this.name = 'TRADING CLIENT';
-    } else if (this.username === 't@stampduty') {
-      this.name = 'TRADE';
-    }
   }
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -39,7 +30,7 @@ export class NavbarComponent implements OnInit {
 
     for(var item = 0; item < this.listTitles.length; item++){
         if(this.listTitles[item].path === titlee){
-            return this.name + ' ' + this.listTitles[item].title;
+            return localStorage.getItem('name') + ' ' + this.listTitles[item].title;
         }
     }
     return 'Dashboard';

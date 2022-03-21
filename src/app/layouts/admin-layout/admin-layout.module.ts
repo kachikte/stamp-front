@@ -14,6 +14,8 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ComponentsModule} from '../../components/components.module';
 import {IgxHierarchicalGridModule} from 'igniteui-angular';
+import {NgxPayPalModule} from 'ngx-paypal';
+import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -25,14 +27,16 @@ import {IgxHierarchicalGridModule} from 'igniteui-angular';
         NgbModule,
         ClipboardModule,
         ComponentsModule,
-        IgxHierarchicalGridModule
+        IgxHierarchicalGridModule,
+        NgxPayPalModule
     ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
     IconsComponent,
-    MapsComponent
+    MapsComponent,
+    MarketDashboardComponent
   ]
 })
 
