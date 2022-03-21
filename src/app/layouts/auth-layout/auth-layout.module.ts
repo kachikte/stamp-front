@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
-import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
 import {ComponentsModule} from '../../components/components.module';
 @NgModule({
     imports: [

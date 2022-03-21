@@ -10,7 +10,6 @@ import {LoginService} from '../../services/login/login.service';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  invalidLogin = localStorage.getItem('invalidLogin');
 
   constructor(private router: Router, private loginSer: LoginService) {
   }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -15,7 +16,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ComponentsModule} from '../../components/components.module';
 import {IgxHierarchicalGridModule} from 'igniteui-angular';
 import {NgxPayPalModule} from 'ngx-paypal';
-import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -36,7 +36,6 @@ import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dash
     TablesComponent,
     IconsComponent,
     MapsComponent,
-    MarketDashboardComponent
   ]
 })
 
