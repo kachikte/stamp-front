@@ -1,28 +1,29 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {LoginService} from '../../services/login/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   invalidLogin = localStorage.getItem('invalidLogin');
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private loginSer: LoginService) {
+  }
 
   ngOnInit() {
   }
+
   ngOnDestroy() {
   }
 
   submit(form: NgForm) {
-    console.log('This is the form');
-    console.log(form.controls.username.value);
-    localStorage.setItem('username', form.controls.username.value);
-    localStorage.setItem('password', form.controls.password.value);
-
-    this.router.navigate(['dashboard']);
+    // tslint:disable-next-line:max-line-length
+    this.loginSer.checkLogin(form.controls.username.value, form.controls.password.value) ? this.router.navigate(['dashboard']) : this.router.navigate(['login']);
   }
 
 }

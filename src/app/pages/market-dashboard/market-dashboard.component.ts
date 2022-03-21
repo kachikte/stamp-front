@@ -15,17 +15,13 @@ import {Trade} from '../../model/Trade';
 import {Party} from '../../model/Party';
 import {Router} from '@angular/router';
 import {DataService} from '../../services/data/data.service';
-import {writeJsonFile} from 'write-json-file';
-const fs = require('fs');
-const path = require('path');
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  providers: [DataService]
+  selector: 'app-market-dashboard',
+  templateUrl: './market-dashboard.component.html',
+  styleUrls: ['./market-dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class MarketDashboardComponent implements OnInit {
   tcTotalExchangeFees = 0;
 
   tTotalPrice = 0;
