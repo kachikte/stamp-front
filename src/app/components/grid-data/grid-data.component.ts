@@ -45,10 +45,10 @@ export class GridDataComponent implements OnInit, OnChanges {
   @Input() myTestData: string | undefined;
 
   constructor(private _http: HttpClient, private dataSer: DataService) {
-    this.marketData = this.dataSer.getData();
+    this.marketData = this.dataSer.getDataAl();
     if (this.indicator === 0) {
       // @ts-ignore
-      this.tradingMembers = this.marketData.marketData.market.tradingMembers;
+      this.tradingMembers = this.marketData.marketData.market[0].tradingMembers;
       console.log('yen yenn yenn');
       console.log(this.tradingMembers);
     } else if (this.indicator === 1) {
@@ -95,7 +95,7 @@ export class GridDataComponent implements OnInit, OnChanges {
 
     if (this.indicator === 1) {
       // @ts-ignore
-      for (const tradMem of this.marketData.marketData.market.tradingMembers) {
+      for (const tradMem of this.marketData.marketData.market[0].tradingMembers) {
         if (tradMem.tradingMemberCode === this.code) {
           trm.push(tradMem);
         }

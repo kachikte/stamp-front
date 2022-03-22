@@ -34,9 +34,7 @@ export class MarketDashboardComponent implements OnInit {
 
   tradingMembersArr: any[] = [];
   tradingClientsArr: any[] = [];
-  tradingClientsSet: Set<any>;
   tradesArr: any[] = [];
-  tradeSet: Set<any>;
   partiesArr: any[] = [];
   partiesSet: Set<any>;
 
@@ -57,7 +55,6 @@ export class MarketDashboardComponent implements OnInit {
   public clicked = true;
   public clicked1 = false;
 
-  tradingMember: any;
   tradingClient: any;
   trade: any;
 
@@ -66,40 +63,23 @@ export class MarketDashboardComponent implements OnInit {
   tLength = 0;
   pLength = 0;
 
+  markets = [];
 
-  public payPalConfig?: IPayPalConfig;
+
   private showSuccess: boolean;
 
   constructor(private router: Router, private dataSer: DataService) {
   }
 
   ngOnInit() {
-    // this.addStakeholder();
-    // this.getDataRespectively();
-    if (localStorage.getItem('role') === 'superAdmin') {
-      this.selIndicator = 0;
-      this.tradingMembersArr = this.dataSer.tradingMembersArr;
-      this.tmLength = this.dataSer.getTradingMembers().length;
-      this.tradingClientsArr = this.dataSer.tradingClientsArr;
-      this.tcLength = this.dataSer.getTradingClients().length;
-      this.tradesArr = this.dataSer.tradesArr;
-      this.tLength = this.dataSer.getTrades().length;
-      this.partiesArr = this.dataSer.partiesArr;
-      this.pLength = this.dataSer.getParties().length;
-    } else if (localStorage.getItem('role') === 'tradingMember') {
-      this.selIndicator = 1;
-      this.tradingMember = this.getTradingMemberDetail();
-      this.tradingClientsSet = this.dataSer.getTradingMemberSelectionData(localStorage.getItem('name'));
-    } else if (localStorage.getItem('role') === 'tradingClient') {
-      this.selIndicator = 2;
-      this.tradingClient = this.getTradingClientDetail();
-      this.tradeSet = this.dataSer.getTradingClientSelectionData(localStorage.getItem('name'));
-    } else if (localStorage.getItem('role') === 'trade') {
-      this.selIndicator = 3;
-      this.trade = this.getTradeDetail();
-      this.partiesSet = this.dataSer.getTradeSelectionData(localStorage.getItem('name'));
-    }
 
+    if (localStorage.getItem('role') === 'superAdmin') {
+      this.markets = this.dataSer.getAdminMarket();
+    } else if (localStorage.getItem('role') === 'tradingMember') {
+      this.markets = this.dataSer.getTradingMarketSelection(localStorage.getItem('name'));
+    } else if (localStorage.getItem('role') === 'tradingClient') {
+      this.markets = this.dataSer.getClientMarketSelection(localStorage.getItem('name'));
+    }
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -132,40 +112,15 @@ export class MarketDashboardComponent implements OnInit {
 
   }
 
-  public loadScript(url: any) {
-    const node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('head')[0].appendChild(node);
-  }
-
-  setCode(cd: string) {
-    this.code = cd;
-    console.log(this.code);
-  }
-
-  getIndicator(idc: string) {
-    this.selIndicator = +idc;
-  }
-
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.dataS;
     this.salesChart.update();
   }
 
-  getTradingMemberDetail() {
-    const tradingMemberCode = localStorage.getItem('name');
-    return this.dataSer.getSpecificTradingMember(tradingMemberCode);
-  }
-
-  getTradingClientDetail() {
-    const accountNumber = localStorage.getItem('name');
-    return this.dataSer.getSpecificTradingClient(accountNumber);
-  }
-
-  getTradeDetail() {
-    const securityCode = localStorage.getItem('name');
-    return this.dataSer.getSpecificTrade(securityCode);
+  submitMarketCode(mark: string) {
+    localStorage.removeItem('marketCode');
+    localStorage.setItem('marketCode', mark);
+    this.router.navigate(['/dashboard']);
   }
 
 }

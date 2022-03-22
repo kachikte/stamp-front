@@ -1,13 +1,15 @@
-import {Injectable, SimpleChanges} from '@angular/core';
+import {EventEmitter, Injectable, Output, SimpleChanges} from '@angular/core';
 import * as data from '../../../assets/data/data.json';
 import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
+import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  markt: string;
   market = data;
   usr = usrs;
   tradingMembersArr: any[] = [];
@@ -16,14 +18,73 @@ export class DataService {
   partiesArr: any[] = [];
 
   constructor() {
-    this.getSelectionData();
+    // this.getSelectionData();
     // console.log('THE JSON DATA');
     // @ts-ignore
     // console.log(this.getData().marketData.market);
   }
 
-  getData() {
+  getAdminMarket() {
+    const marketAdArr = [];
+    // @ts-ignore
+    for (const market of this.market.marketData.market) {
+          marketAdArr.push(market.marketPlaceCode);
+    }
+
+    return marketAdArr;
+  }
+
+  getTradingMarketSelection(code: string) {
+
+    const marketTmArr = [];
+    // @ts-ignore
+    for (const market of this.market.marketData.market) {
+      for (const tradingMember of market.tradingMembers) {
+        if (code.toLowerCase() === tradingMember.tradingMemberCode.toLowerCase()) {
+          marketTmArr.push(market.marketPlaceCode);
+          console.log('MARKETTTSSSS');
+          console.log(market.marketPlaceCode);
+        }
+      }
+    }
+
+    return marketTmArr;
+  }
+
+  getClientMarketSelection(acctNo: string) {
+
+    const marketTcArr = [];
+    // @ts-ignore
+    for (const market of this.market.marketData.market) {
+      for (const tradingMember of market.tradingMembers) {
+        for (const tradingClient of tradingMember.tradingClients) {
+          if (acctNo === tradingClient.accountNumber) {
+            marketTcArr.push(market.marketPlaceCode);
+            console.log('MARKETTTSSSS');
+            console.log(market.marketPlaceCode);
+          }
+        }
+      }
+    }
+
+    return marketTcArr;
+  }
+
+  getDataAl() {
     return this.market;
+  }
+
+  getData() {
+    const marketData: any[] = [];
+    // @ts-ignore
+    for (const market of this.market.marketData.market) {
+      console.log('ggggggggataaaaaaaaaaaaaaaaa');
+      console.log(market);
+      if (market.marketPlaceCode.toLowerCase() === localStorage.getItem('marketCode').toLowerCase()) {
+        marketData.push(market);
+      }
+    }
+    return marketData;
   }
 
   getUsers() {
@@ -31,6 +92,9 @@ export class DataService {
   }
 
   getSelectionData() {
+
+    console.log('dataaaaaaaaaaaaaaaaa');
+    console.log(this.getData());
 
     const tradingMembers = [];
     // @ts-ignore

@@ -75,9 +75,13 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router, private dataSer: DataService) {
   }
 
+
   ngOnInit() {
     // this.addStakeholder();
     // this.getDataRespectively();
+
+    this.dataSer.getSelectionData();
+
     if (localStorage.getItem('role') === 'superAdmin') {
       this.selIndicator = 0;
       this.tradingMembersArr = this.dataSer.tradingMembersArr;
@@ -168,6 +172,10 @@ export class DashboardComponent implements OnInit {
   getTradeDetail() {
     const securityCode = localStorage.getItem('name');
     return this.dataSer.getSpecificTrade(securityCode);
+  }
+
+  back() {
+    this.router.navigate(['market-dashboard']);
   }
 
 }
