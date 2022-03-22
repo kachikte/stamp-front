@@ -6,6 +6,7 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
+import {MemberDashboardComponent} from '../../pages/member-dashboard/member-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -14,4 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
   { path: 'market-dashboard',           component: MarketDashboardComponent },
+  {path: 'member-dashboard', component: MemberDashboardComponent}
 ];

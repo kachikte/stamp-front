@@ -17,6 +17,7 @@ import {ComponentsModule} from '../../components/components.module';
 import {IgxHierarchicalGridModule} from 'igniteui-angular';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
+import {MemberDashboardComponent} from '../../pages/member-dashboard/member-dashboard.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dash
     TablesComponent,
     IconsComponent,
     MapsComponent,
-    MarketDashboardComponent
+    MarketDashboardComponent,
+    MemberDashboardComponent
   ]
 })
 

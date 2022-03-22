@@ -70,6 +70,25 @@ export class DataService {
     return marketTcArr;
   }
 
+  getClientTradingMemberSelection(acctNo: string) {
+
+    const tmTcArr = [];
+    // @ts-ignore
+    for (const market of this.market.marketData.market) {
+      for (const tradingMember of market.tradingMembers) {
+        for (const tradingClient of tradingMember.tradingClients) {
+          if (acctNo === tradingClient.accountNumber) {
+            tmTcArr.push(tradingMember.tradingMemberCode);
+            console.log('TRADING MEMMMMMMM');
+            console.log(tradingMember.tradingMemberCode);
+          }
+        }
+      }
+    }
+
+    return tmTcArr;
+  }
+
   getDataAl() {
     return this.market;
   }

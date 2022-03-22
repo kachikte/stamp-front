@@ -42,6 +42,16 @@ const routes: Routes = [
       }
     ]
   }, {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'member-dashboard',
+        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'market-dashboard'
   }

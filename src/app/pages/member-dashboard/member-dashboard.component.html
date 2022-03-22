@@ -3,16 +3,16 @@
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
-        <div *ngFor="let mark of markets; let i = index" class="col-xl-3 col-lg-6" style="padding-top: 50px">
+        <div *ngFor="let tm of tradingMembers; let i = index" class="col-xl-3 col-lg-6" style="padding-top: 50px">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
-                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
-                  <img src="./assets/img/brand/ngx-removebg-preview.png" class="navbar-brand-img" alt="...">
+                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/market-dashboard']">
+<!--                  <img src="./assets/img/brand/ngx-removebg-preview.png" class="navbar-brand-img" alt="...">-->
                 </a>
                 <div class="col">
-<!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
-                  <span class="h2 font-weight-bold mb-0">{{mark}}</span>
+<!--                  <h5 class="card-title text-uppercase text-muted mb-0">Trading Member {{i + 1}}</h5>-->
+                  <span class="h2 font-weight-bold mb-0">{{tm}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -25,7 +25,10 @@
                 <span class="text-nowrap">Since last month</span>
               </p>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <button class="btn btn-success" (click)="submitMarketCode(mark)">Go</button>
+                <button class="btn btn-success" (click)="submitTradingMemberCode()">Go</button>
+              </p>
+              <p class="col">
+                <button class="btn btn-primary" (click)="back()">Back</button>
               </p>
             </div>
           </div>

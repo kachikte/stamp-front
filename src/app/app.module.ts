@@ -16,6 +16,7 @@ import { ComponentsModule } from './components/components.module';
 import { IgxHierarchicalGridModule } from 'igniteui-angular';
 import {DataService} from './services/data/data.service';
 import {NgxPayPalModule} from 'ngx-paypal';
+import { MemberDashboardComponent } from './pages/member-dashboard/member-dashboard.component';
 // import {IgxGridColumnModule} from 'igniteui-angular/lib/grids/columns/column.module';
 
 
@@ -36,7 +37,7 @@ import {NgxPayPalModule} from 'ngx-paypal';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
+    AuthLayoutComponent
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

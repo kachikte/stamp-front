@@ -1,13 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import Chart from 'chart.js';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from '../../variables/charts';
 // @ts-ignore
 import {Market} from '../../model/Market';
 import {TradingClient} from '../../model/TradingClient';
@@ -82,7 +75,7 @@ export class DashboardComponent implements OnInit {
 
     this.dataSer.getSelectionData();
 
-    if (localStorage.getItem('role') === 'superAdmin') {
+    if (this.role === 'superAdmin') {
       this.selIndicator = 0;
       this.tradingMembersArr = this.dataSer.tradingMembersArr;
       this.tmLength = this.dataSer.getTradingMembers().length;
@@ -92,49 +85,19 @@ export class DashboardComponent implements OnInit {
       this.tLength = this.dataSer.getTrades().length;
       this.partiesArr = this.dataSer.partiesArr;
       this.pLength = this.dataSer.getParties().length;
-    } else if (localStorage.getItem('role') === 'tradingMember') {
+    } else if (this.role === 'tradingMember') {
       this.selIndicator = 1;
       this.tradingMember = this.getTradingMemberDetail();
-      this.tradingClientsSet = this.dataSer.getTradingMemberSelectionData(localStorage.getItem('name'));
-    } else if (localStorage.getItem('role') === 'tradingClient') {
+      this.tradingClientsSet = this.dataSer.getTradingMemberSelectionData(this.name);
+    } else if (this.role === 'tradingClient') {
       this.selIndicator = 2;
       this.tradingClient = this.getTradingClientDetail();
-      this.tradeSet = this.dataSer.getTradingClientSelectionData(localStorage.getItem('name'));
-    } else if (localStorage.getItem('role') === 'trade') {
+      this.tradeSet = this.dataSer.getTradingClientSelectionData(this.name);
+    } else if (this.role === 'trade') {
       this.selIndicator = 3;
       this.trade = this.getTradeDetail();
-      this.partiesSet = this.dataSer.getTradeSelectionData(localStorage.getItem('name'));
+      this.partiesSet = this.dataSer.getTradeSelectionData(this.name);
     }
-
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.dataS = this.datasets[0];
-
-
-    const chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-    const ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    const chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-      // tslint:disable-next-line:indent
-      type: 'line',
-      // tslint:disable-next-line:indent
-      options: chartExample1.options,
-      // tslint:disable-next-line:indent
-      data: chartExample1.data
-      // tslint:disable-next-line:indent
-    });
 
   }
 
@@ -154,11 +117,6 @@ export class DashboardComponent implements OnInit {
     this.selIndicator = +idc;
   }
 
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.dataS;
-    this.salesChart.update();
-  }
-
   getTradingMemberDetail() {
     const tradingMemberCode = localStorage.getItem('name');
     return this.dataSer.getSpecificTradingMember(tradingMemberCode);
@@ -175,7 +133,11 @@ export class DashboardComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['market-dashboard']);
+    if (this.role === 'superAdmin' || this.role === 'tradingMember') {
+      this.router.navigate(['market-dashboard']);
+    } else if (this.role === 'tradingClient') {
+      this.router.navigate(['member-dashboard']);
+    }
   }
 
 }
