@@ -39,7 +39,7 @@ import {MemberDashboardComponent} from '../../pages/member-dashboard/member-dash
     IconsComponent,
     MapsComponent,
     MarketDashboardComponent,
-    MemberDashboardComponent
+    MemberDashboardComponent,
   ]
 })
 
