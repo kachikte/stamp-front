@@ -16,8 +16,7 @@ import { ComponentsModule } from './components/components.module';
 import { IgxHierarchicalGridModule } from 'igniteui-angular';
 import {DataService} from './services/data/data.service';
 import {NgxPayPalModule} from 'ngx-paypal';
-import { MemberDashboardComponent } from './pages/member-dashboard/member-dashboard.component';
-// import {IgxGridColumnModule} from 'igniteui-angular/lib/grids/columns/column.module';
+import { FlutterwaveModule } from 'flutterwave-angular-v3';
 
 
 
@@ -30,7 +29,7 @@ import { MemberDashboardComponent } from './pages/member-dashboard/member-dashbo
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    // IgxGridColumnModule,
+    FlutterwaveModule,
     IgxHierarchicalGridModule,
     NgxPayPalModule,
   ],

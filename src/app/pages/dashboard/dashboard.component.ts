@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
 
   tmLength = 0;
   tcLength = 0;
+  acLength = 0;
   tLength = 0;
   pLength = 0;
 
@@ -81,6 +82,7 @@ export class DashboardComponent implements OnInit {
       this.tmLength = this.dataSer.getTradingMembers().length;
       this.tradingClientsArr = this.dataSer.tradingClientsArr;
       this.tcLength = this.dataSer.getTradingClients().length;
+      this.acLength = this.dataSer.getAccountTrades().length;
       this.tradesArr = this.dataSer.tradesArr;
       this.tLength = this.dataSer.getTrades().length;
       this.partiesArr = this.dataSer.partiesArr;
@@ -93,10 +95,6 @@ export class DashboardComponent implements OnInit {
       this.selIndicator = 2;
       this.tradingClient = this.getTradingClientDetail();
       this.tradeSet = this.dataSer.getTradingClientSelectionData(this.name);
-    } else if (this.role === 'trade') {
-      this.selIndicator = 3;
-      this.trade = this.getTradeDetail();
-      this.partiesSet = this.dataSer.getTradeSelectionData(this.name);
     }
 
   }
@@ -110,6 +108,7 @@ export class DashboardComponent implements OnInit {
 
   setCode(cd: string) {
     this.code = cd;
+    console.log('This is the selection code');
     console.log(this.code);
   }
 
@@ -123,8 +122,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getTradingClientDetail() {
-    const accountNumber = localStorage.getItem('name');
-    return this.dataSer.getSpecificTradingClient(accountNumber);
+    const identifier = localStorage.getItem('name');
+    return this.dataSer.getSpecificTradingClient(identifier);
   }
 
   getTradeDetail() {

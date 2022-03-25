@@ -2,7 +2,6 @@ import {EventEmitter, Injectable, Output, SimpleChanges} from '@angular/core';
 import * as data from '../../../assets/data/data.json';
 import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
-import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,7 @@ export class DataService {
   usr = usrs;
   tradingMembersArr: any[] = [];
   tradingClientsArr: any[] = [];
+  accountTradesArr: any[] = [];
   tradesArr: any[] = [];
   partiesArr: any[] = [];
 
@@ -28,7 +28,7 @@ export class DataService {
     const marketAdArr = [];
     // @ts-ignore
     for (const market of this.market.marketData.market) {
-          marketAdArr.push(market.marketPlaceCode);
+      marketAdArr.push(market.marketPlaceCode);
     }
 
     return marketAdArr;
@@ -51,14 +51,14 @@ export class DataService {
     return marketTmArr;
   }
 
-  getClientMarketSelection(acctNo: string) {
+  getClientMarketSelection(identifier: string) {
 
     const marketTcArr = [];
     // @ts-ignore
     for (const market of this.market.marketData.market) {
       for (const tradingMember of market.tradingMembers) {
         for (const tradingClient of tradingMember.tradingClients) {
-          if (acctNo === tradingClient.accountNumber) {
+          if (identifier.toLowerCase() === tradingClient.identifier.toLowerCase()) {
             marketTcArr.push(market.marketPlaceCode);
             console.log('MARKETTTSSSS');
             console.log(market.marketPlaceCode);
@@ -70,14 +70,14 @@ export class DataService {
     return marketTcArr;
   }
 
-  getClientTradingMemberSelection(acctNo: string) {
+  getClientTradingMemberSelection(identifier: string) {
 
     const tmTcArr = [];
     // @ts-ignore
     for (const market of this.market.marketData.market) {
       for (const tradingMember of market.tradingMembers) {
         for (const tradingClient of tradingMember.tradingClients) {
-          if (acctNo === tradingClient.accountNumber) {
+          if (identifier.toLowerCase() === tradingClient.identifier.toLowerCase()) {
             tmTcArr.push(tradingMember.tradingMemberCode);
             console.log('TRADING MEMMMMMMM');
             console.log(tradingMember.tradingMemberCode);
@@ -116,28 +116,49 @@ export class DataService {
     console.log(this.getData());
 
     const tradingMembers = [];
+
+    const datar = this.getData();
+
     // @ts-ignore
-    for (const tradingMember of this.market.marketData.market[0].tradingMembers) {
-      for (const tradingClient of tradingMember.tradingClients) {
+    for (const market of datar) {
+      for (const tradingMember of market.tradingMembers) {
 
-        for (const trade of tradingClient.trades) {
+        for (const tradingClient of tradingMember.tradingClients) {
 
-          const parties = [];
-          for (const party of trade.parties) {
-            const part = new Party();
-            part.partyId = party.partyId;
-            part.partyRole = party.partyRole;
-            parties.push(part);
-            this.partiesArr.push(party.partyId);
+          for (const accountTrade of tradingClient.accountTrades) {
+
+            for (const trade of accountTrade.trades) {
+
+              const parties = [];
+              for (const party of trade.parties) {
+                const part = new Party();
+                part.partyId = party.partyId;
+                part.partyRole = party.partyRole;
+                parties.push(part);
+                this.partiesArr.push(party.partyId);
+              }
+              this.tradesArr.push(trade.securityCode);
+            }
+
+            console.log('tradeeeeesssss');
+            console.log(this.tradesArr);
+
+            this.accountTradesArr.push(accountTrade.accountNumber);
           }
-          this.tradesArr.push(trade.securityCode);
+          console.log('accccoooouuuunnnnnntttts');
+          console.log(this.accountTradesArr);
+
+          this.tradingClientsArr.push((tradingClient.fistName.toUpperCase()).concat(' ').concat(tradingClient.lastName.toUpperCase()));
         }
 
-        this.tradingClientsArr.push(tradingClient.accountNumber);
-      }
+        console.log('cllllliiiiieeeennnnttttsss');
+        console.log(this.tradingClientsArr);
 
-      tradingMembers.push(tradingMember.tradingMemberCode);
+        tradingMembers.push(tradingMember.tradingMemberCode);
+      }
     }
+    console.log('meeeeeeemmmmmmm');
+    console.log(this.tradingMembersArr);
 
     this.tradingMembersArr = tradingMembers;
     this.tradingMembersArr.push('Select ...');
@@ -170,9 +191,13 @@ export class DataService {
   getTradingMembers() {
     // tslint:disable-next-line:prefer-const
     let tradingMembers: any[] = [];
+
+    const datar = this.getData();
     // @ts-ignore
-    for (const tradingMember of this.market.marketData.market[0].tradingMembers) {
-      tradingMembers.push(tradingMember);
+    for (const market of datar) {
+      for (const tradingMember of market.tradingMembers) {
+        tradingMembers.push(tradingMember);
+      }
     }
 
     return tradingMembers;
@@ -195,36 +220,78 @@ export class DataService {
     // tslint:disable-next-line:prefer-const
     let tradingClients: any[] = [];
     // @ts-ignore
-    for (const tradingMember of this.market.marketData.market[0].tradingMembers) {
-      for (const tradingClient of tradingMember.tradingClients) {
-        tradingClients.push(tradingClient);
+
+    const datar = this.getData();
+    // @ts-ignore
+    for (const market of datar) {
+      for (const tradingMember of market.tradingMembers) {
+        for (const tradingClient of tradingMember.tradingClients) {
+          tradingClients.push(tradingClient);
+        }
       }
     }
 
     return tradingClients;
   }
 
-  getSpecificTradingClient(accountNumber: string) {
+  getSpecificTradingClient(identifier: string) {
     // tslint:disable-next-line:prefer-const
     let tradingClient: any;
     // @ts-ignore
     for (const tradingMem of this.market.marketData.market[0].tradingMembers) {
       for (const tradingClien of tradingMem.tradingClients) {
-        if (tradingClien.accountNumber === accountNumber) {
+
+        if (tradingClien.identifier === identifier) {
           tradingClient = tradingClien;
+        }
+
+      }
+    }
+
+    console.log('This is the specific trading client');
+    console.log(tradingClient);
+    return tradingClient;
+  }
+
+  getAccountTrades() {
+    // tslint:disable-next-line:prefer-const
+    let accountTrades: any[] = [];
+    const datar = this.getData();
+    // @ts-ignore
+    for (const market of datar) {
+      for (const tradingMember of market.tradingMembers) {
+        for (const tradingClient of tradingMember.tradingClients) {
+          for (const accountTrade of tradingClient.accountTrades) {
+            accountTrades.push(accountTrade);
+          }
         }
       }
     }
 
-    return tradingClient;
+    return accountTrades;
+  }
+
+  getSpecificAccountTrade(accountNumber: string) {
+    // tslint:disable-next-line:prefer-const
+    let accountTrade: any;
+    // @ts-ignore
+    for (const tradingClient of this.getTradingClients()) {
+      for (const accTr of tradingClient.accountTrades) {
+        if (accTr.accountNumber === accountNumber) {
+          accountTrade = accTr;
+        }
+      }
+    }
+
+    return accountTrade;
   }
 
   getTrades() {
     // tslint:disable-next-line:prefer-const
     let trades: any[] = [];
     // @ts-ignore
-    for (const tradingClient of this.getTradingClients()) {
-      for (const trade of tradingClient.trades) {
+    for (const accountTrade of this.getAccountTrades()) {
+      for (const trade of accountTrade.trades) {
         trades.push(trade);
       }
     }
@@ -236,8 +303,8 @@ export class DataService {
     // tslint:disable-next-line:prefer-const
     let trade: any;
     // @ts-ignore
-    for (const tradingClient of this.getTradingClients()) {
-      for (const trad of tradingClient.trades) {
+    for (const accountTrade of this.getAccountTrades()) {
+      for (const trad of accountTrade.trades) {
         if (trad.securityCode === securityCode) {
           trade = trad;
         }
@@ -269,7 +336,7 @@ export class DataService {
         console.log(tradingMm.tradingClients);
         const tradM = tradingMm.tradingClients;
         for (const tradCl of tradM) {
-          tradingMember.push(tradCl.accountNumber);
+          tradingMember.push(tradCl.fistName.toUpperCase().concat(' ').concat(tradCl.lastName.toUpperCase()));
         }
         break;
       }
@@ -281,17 +348,14 @@ export class DataService {
 
   }
 
-  getTradingClientSelectionData(accountNumber: string) {
+  getTradingClientSelectionData(identifier: string) {
 
     const tradingClient: any[] = [];
     // @ts-ignore
     for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
       for (const tradingCc of tradingMm.tradingClients) {
-        if (tradingCc.accountNumber === accountNumber) {
-          const tradC = tradingCc.trades;
-          for (const tradSs of tradC) {
-            tradingClient.push(tradSs.securityCode);
-          }
+        if (tradingCc.identifier === identifier) {
+          tradingClient.push(tradingCc.fistName.toUpperCase().concat(' ').concat(tradingCc.lastName.toUpperCase()));
 
           console.log('CLIENTSSSS');
           console.log(tradingClient);
@@ -306,34 +370,34 @@ export class DataService {
 
   }
 
-  getTradeSelectionData(securityCode: string) {
-
-    let k = 0;
-    const tradesk: any[] = [];
-    // @ts-ignore
-    for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
-      for (const tradingCc of tradingMm.tradingClients) {
-        for (const tra of tradingCc.trades) {
-          if (tra.securityCode === securityCode) {
-            k = 1;
-            const party = tra.parties;
-            console.log('PARRRRRTTTIESSS');
-            console.log(party);
-            console.log('PARRRRRTTTIESSS');
-            console.log(tradesk);
-            for (const par of party) {
-              tradesk.push(par.partyId);
-            }
-          }
-        }
-      }
-    }
-
-    tradesk.push('Select ...');
-    const tradingPartySet = new Set(tradesk);
-
-    return tradingPartySet;
-
-  }
+  // getTradeSelectionData(securityCode: string) {
+  //
+  //   let k = 0;
+  //   const tradesk: any[] = [];
+  //   // @ts-ignore
+  //   for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
+  //     for (const tradingCc of tradingMm.tradingClients) {
+  //       for (const tra of tradingCc.trades) {
+  //         if (tra.securityCode === securityCode) {
+  //           k = 1;
+  //           const party = tra.parties;
+  //           console.log('PARRRRRTTTIESSS');
+  //           console.log(party);
+  //           console.log('PARRRRRTTTIESSS');
+  //           console.log(tradesk);
+  //           for (const par of party) {
+  //             tradesk.push(par.partyId);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //
+  //   tradesk.push('Select ...');
+  //   const tradingPartySet = new Set(tradesk);
+  //
+  //   return tradingPartySet;
+  //
+  // }
 
 }

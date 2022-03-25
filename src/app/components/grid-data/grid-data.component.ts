@@ -45,25 +45,24 @@ export class GridDataComponent implements OnInit, OnChanges {
   @Input() myTestData: string | undefined;
 
   constructor(private _http: HttpClient, private dataSer: DataService) {
-    this.marketData = this.dataSer.getDataAl();
-    if (this.indicator === 0) {
-      // @ts-ignore
-      this.tradingMembers = this.marketData.marketData.market[0].tradingMembers;
-      console.log('yen yenn yenn');
-      console.log(this.tradingMembers);
-    } else if (this.indicator === 1) {
-      const tradingMm = this.dataSer.getSpecificTradingMember(localStorage.getItem('name'));
-      // @ts-ignore
-      this.tradM = tradingMm.tradingClients;
-      // console.log('yen yenn yenn');
-      // console.log(this.tradM);
+    this.marketData = this.dataSer.getData();
+    for (const market of this.marketData) {
+      if (this.indicator === 0) {
+        // @ts-ignore
+        this.tradingMembers = market.tradingMembers;
+        console.log('yen yenn yenn');
+        console.log(this.tradingMembers);
+      }
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const trm: TradingMember[] = [];
-    const trllc: TradingClient[] = [];
-    const trc: TradingClient[] = [];
+    const trm: any[] = [];
+    const trllc: any[] = [];
+    const trc: any[] = [];
+
+    const acllt: any[] = [];
+    const atr: any[] = [];
 
 
     const trllt: Trade[] = [];
@@ -72,14 +71,28 @@ export class GridDataComponent implements OnInit, OnChanges {
     const prllt: Party[] = [];
     const prt: Party[] = [];
 
+    const datarrr = this.dataSer.getData();
+
     // @ts-ignore
-    for (const tradCll of this.marketData.marketData.market[0].tradingMembers) {
-      for (const tcn of tradCll.tradingClients) {
-        trllc.push(tcn);
+    for (const market of datarrr) {
+      for (const tradCll of market.tradingMembers) {
+        for (const tcn of tradCll.tradingClients) {
+          trllc.push(tcn);
+        }
       }
     }
 
-    for (const tradTll of trllc) {
+    for (const accTll of trllc) {
+      // @ts-ignore
+      for (const acct of accTll.accountTrades) {
+        acllt.push(acct);
+      }
+    }
+
+    console.log('griiiddd data');
+    console.log(acllt);
+
+    for (const tradTll of acllt) {
       // @ts-ignore
       for (const tradd of tradTll.trades) {
         trllt.push(tradd);
@@ -95,9 +108,11 @@ export class GridDataComponent implements OnInit, OnChanges {
 
     if (this.indicator === 1) {
       // @ts-ignore
-      for (const tradMem of this.marketData.marketData.market[0].tradingMembers) {
-        if (tradMem.tradingMemberCode === this.code) {
-          trm.push(tradMem);
+      for (const market of datarrr) {
+        for (const tradMem of market.tradingMembers) {
+          if (tradMem.tradingMemberCode.toLowerCase() === this.code.toLowerCase()) {
+            trm.push(tradMem);
+          }
         }
       }
 
@@ -106,7 +121,10 @@ export class GridDataComponent implements OnInit, OnChanges {
 
     if (this.indicator === 2) {
       for (const tradClie of trllc) {
-        if (tradClie.accountNumber === this.code) {
+        if (tradClie.fistName.toLowerCase().concat(' ').concat(tradClie.lastName.toLowerCase()) === this.code.toLowerCase()) {
+
+          console.log(tradClie.fistName.toLowerCase().concat(' ').concat(tradClie.lastName.toLowerCase()));
+          console.log(this.code.toLowerCase());
           trc.push(tradClie);
         }
       }

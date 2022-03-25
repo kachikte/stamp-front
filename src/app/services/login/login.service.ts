@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DataService} from '../data/data.service';
 
 @Injectable({
@@ -18,6 +18,9 @@ export class LoginService {
     for (const userData of this.userP) {
       if (username === userData.username) {
         if (password === userData.password) {
+          if (userData.role === 'tradingClient') {
+            localStorage.setItem('nameEx', userData.firstName.toUpperCase().concat(' ').concat(userData.lastName.toUpperCase()));
+          }
           localStorage.setItem('name', userData.name);
           localStorage.setItem('role', userData.role);
           console.log(userData.role);

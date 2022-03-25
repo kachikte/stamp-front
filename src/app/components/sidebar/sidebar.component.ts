@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import {Flutterwave, InlinePaymentOptions, PaymentSuccessResponse} from 'flutterwave-angular-v3';
+import {DataService} from '../../services/data/data.service';
+import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 declare interface RouteInfo {
     path: string;
@@ -29,10 +32,38 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
+  tradingMember = this.getTradingMemberDetail();
+
   public payPalConfig?: IPayPalConfig;
   private showSuccess: boolean;
 
-  constructor(private router: Router) { }
+
+
+
+  publicKey = 'FLWPUBK_TEST-6e9c0316d4efcb310bb843f77dedbf60-X';
+
+  customerDetails = { name: 'Demo Customer  Name', email: 'customer1@gmail.com', phone_number: '08100000000'};
+
+  customizations = {title: 'Stamp Duty Fess for ' + this.role === 'tradingMember' ? this.tradingMember?.tradingMemberCode : '', description: 'Customization Description', logo: 'https://flutterwave.com/images/logo-colored.svg'};
+
+  meta = {'counsumer_id': '7898', 'consumer_mac': 'kjs9s8ss7dd'};
+
+  paymentData: InlinePaymentOptions = {
+    public_key: this.publicKey,
+    tx_ref: this.generateReference(),
+    amount: this.role === 'tradingMember' ? this.tradingMember.totalStampDutyFees : 0,
+    currency: 'NGN',
+    payment_options: 'card,ussd',
+    redirect_url: '',
+    meta: this.meta,
+    customer: this.customerDetails,
+    customizations: this.customizations,
+    callback: this.makePaymentCallback,
+    onclose: this.closedPaymentModal,
+    callbackContext: this
+  };
+
+  constructor(private router: Router, private flutterwave: Flutterwave, private dataSer: DataService) { }
 
   ngOnInit() {
     this.initConfig();
@@ -40,6 +71,7 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+
   }
 
   private initConfig(): void {
@@ -101,5 +133,37 @@ export class SidebarComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
+  }
+
+
+  makePayment() {
+    this.flutterwave.inlinePay(this.paymentData);
+  }
+  makePaymentCallback(response: PaymentSuccessResponse): void {
+    console.log('Payment callback', response);
+  }
+  closedPaymentModal(): void {
+    console.log('payment is closed');
+  }
+
+  generateReference(): string {
+    const date = new Date();
+    return date.getTime().toString();
+  }
+
+  getTradingMemberDetail() {
+    const tradingMemberCode = localStorage.getItem('name');
+    return this.dataSer.getSpecificTradingMember(tradingMemberCode);
+  }
+
+  public beforeChange($event: NgbPanelChangeEvent) {
+
+    if ($event.panelId === 'preventchange-2') {
+      $event.preventDefault();
+    }
+
+    if ($event.panelId === 'preventchange-3' && $event.nextState === false) {
+      $event.preventDefault();
+    }
   }
 }

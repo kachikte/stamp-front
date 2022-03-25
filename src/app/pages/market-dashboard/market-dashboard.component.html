@@ -2,17 +2,58 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
+<!--      <div class="row">-->
+<!--        <div *ngFor="let mark of markets; let i = index" class="col-xl-3 col-lg-6" style="padding-top: 50px">-->
+<!--          <div class="card card-stats mb-4 mb-xl-0">-->
+<!--            <div class="card-body">-->
+<!--              <div class="row">-->
+<!--                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">-->
+<!--                  <img src="./assets/img/brand/ngx-removebg-preview.png" class="navbar-brand-img" alt="...">-->
+<!--                </a>-->
+<!--                <div class="col">-->
+<!--&lt;!&ndash;                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>&ndash;&gt;-->
+<!--                  <span class="h2 font-weight-bold mb-0">{{mark}}</span>-->
+<!--                </div>-->
+<!--                <div class="col-auto">-->
+<!--                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">-->
+<!--                    <i class="fas fa-chart-bar"></i>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <p class="mt-3 mb-0 text-muted text-sm">-->
+<!--                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>-->
+<!--                <span class="text-nowrap">Since last month</span>-->
+<!--              </p>-->
+<!--              <div class="row">-->
+<!--                <div class="col">-->
+<!--                  <p>-->
+<!--                    <select name="trades" id="ts">-->
+<!--                      <option *ngFor="let mn of months" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>-->
+<!--                    </select>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--                  <div class="col">-->
+<!--                  <p class="mt-3 mb-0 text-muted text-sm">-->
+<!--                    <button class="btn btn-success" (click)="submitMarketCode(mark)">Go</button>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
       <div class="row">
-        <div *ngFor="let mark of markets; let i = index" class="col-xl-3 col-lg-6" style="padding-top: 50px">
+        <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
-                  <img src="./assets/img/brand/ngx-removebg-preview.png" class="navbar-brand-img" alt="...">
+                  <img src="./assets/img/brand/afex-removebg-preview.png" class="navbar-brand-img" alt="...">
                 </a>
                 <div class="col">
-<!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
-                  <span class="h2 font-weight-bold mb-0">{{mark}}</span>
+                  <!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
+                  <span class="h2 font-weight-bold mb-0">AFEX</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -24,9 +65,143 @@
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                 <span class="text-nowrap">Since last month</span>
               </p>
+              <div class="row">
+                <div class="col">
+                  <p>
+                    <select name="trades" id="ts1">
+                      <option *ngFor="let mn of months" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>
+                    </select>
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <button class="btn btn-success">Go</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+                  <img src="./assets/img/brand/fmdq-removebg-preview.png" class="navbar-brand-img" alt="...">
+                </a>
+                <div class="col">
+                  <!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
+                  <span class="h2 font-weight-bold mb-0">FMDQ</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <button class="btn btn-success" (click)="submitMarketCode(mark)">Go</button>
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
               </p>
+              <div class="row">
+                <div class="col">
+                  <p>
+                    <select name="trades" id="ts2">
+                      <option *ngFor="let mn of months" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>
+                    </select>
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <button class="btn btn-success">Go</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+                  <img src="./assets/img/brand/nasd-removebg-preview.png" class="navbar-brand-img" alt="...">
+                </a>
+                <div class="col">
+                  <!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
+                  <span class="h2 font-weight-bold mb-0">NASD</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <p>
+                    <select name="trades" id="ts3">
+                      <option *ngFor="let mn of months" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>
+                    </select>
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <button class="btn btn-success">Go</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+                  <img src="./assets/img/brand/ncx-removebg-preview.png" class="navbar-brand-img" alt="...">
+                </a>
+                <div class="col">
+                  <!--                  <h5 class="card-title text-uppercase text-muted mb-0">Market {{i + 1}}</h5>-->
+                  <span class="h2 font-weight-bold mb-0">NCX</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <p>
+                    <select name="trades" id="ts4">
+                      <option *ngFor="let mn of months" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>
+                    </select>
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <button class="btn btn-success">Go</button>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

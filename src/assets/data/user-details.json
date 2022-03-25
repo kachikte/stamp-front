@@ -32,8 +32,8 @@
         "role": "tradingMember"
       },
       {
-        "username": "sisb@stampduty",
-        "password": "sisb@stampduty",
+        "username": "sisb@stampduty.com",
+        "password": "sisb@stampduty.com",
         "name": "sisb",
         "role": "tradingMember"
       },
@@ -94,61 +94,9 @@
       {
         "username": "clientOne@stampduty",
         "password": "clientOne@stampduty",
-        "name": "0130511408",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientTwo@stampduty",
-        "password": "clientTwo@stampduty",
-        "name": "0009742161",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientThree@stampduty",
-        "password": "clientThree@stampduty",
-        "name": "0130476834",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientFour@stampduty",
-        "password": "clientFour@stampduty",
-        "name": "0066312233",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientFive@stampduty",
-        "password": "clientFive@stampduty",
-        "name": "0130685421",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientSix@stampduty",
-        "password": "clientSix@stampduty",
-        "name": "0130707779",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientSeven@stampduty",
-        "password": "clientSeven@stampduty",
-        "name": "0130591261",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientEight@stampduty",
-        "password": "clientEight@stampduty",
-        "name": "0130701097",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientNine@stampduty",
-        "password": "clientNine@stampduty",
-        "name": "0130675342",
-        "role": "tradingClient"
-      },
-      {
-        "username": "clientTen@stampduty",
-        "password": "clientTen@stampduty",
-        "name": "0059960294",
+        "name": "NIN-00658260",
+        "firstName":  "Saudat",
+        "lastName": "Abdulhamid",
         "role": "tradingClient"
       }
     ]
