@@ -258,6 +258,74 @@
   <div class="grid__wrapper">
     <!--  <igx-hierarchical-grid class="hierarchicalGrid" [data]="tradingMembers" (columnResized)="onResize($event)" [autoGenerate]="false"-->
     <!--                         [height]="'480px'" [width]="'100%'" [rowHeight]="'65px'" #hierarchicalGrid>-->
+    <igx-hierarchical-grid class="hierarchicalGrid" [data]="acctT" (columnResized)="onResize($event)"
+                           [autoGenerate]="false"
+                           [width]="'100%'" [rowHeight]="'65px'" #hierarchicalGrid>
+        <igx-column field="accountNumber" header="Account Number" [resizable]="true"></igx-column>
+        <igx-column field="totalGrossAmount" header="Total Gross Amount" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <!--      <igx-column field="totalGrossAmount" header="Total Gross Amount" [resizable]="true" [dataType]="'date'"></igx-column>-->
+        <igx-column field="totalStampDutyFees" header="Total Stamp Duty Fees" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <igx-column field="totalBrokerageFees" header="Total Brokerage Fees" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <igx-column field="totalExchangeFees" header="Total Exchange Fees" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <igx-column field="totalCentralSecurityDepositFees" header="Total Central Security Deposit Fees"
+                    [resizable]="true" dataType="number" [pipeArgs]="pipeArgs"></igx-column>
+        <igx-column field="totalTradeAlertFees" header="Total Trade Alert Fees" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <igx-column field="totalSecFees" header="Total Sec Fees" [resizable]="true" dataType="number"
+                    [pipeArgs]="pipeArgs"></igx-column>
+        <igx-row-island [key]="'trades'" [autoGenerate]="false">
+          <igx-column field="executionId" header="Execution Id" [resizable]="true"></igx-column>
+          <igx-column field="securityCode" header="Security Code" [resizable]="true"></igx-column>
+          <igx-column field="securityType" header="Security Type" [resizable]="true"></igx-column>
+
+          <!--        <igx-column field="securityType" dataType="date" [resizable]="true"></igx-column>-->
+
+
+          <igx-column field="marketSegmentId" header="Market Segment Id" [resizable]="true"></igx-column>
+          <igx-column field="quantity" header="Quantity" [resizable]="true"></igx-column>
+          <igx-column field="price" header="Price" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="transactionTime" header="Transaction Time" [resizable]="true"></igx-column>
+          <igx-column field="settlementDate" header="Settlement Date" [resizable]="true"></igx-column>
+          <igx-column field="numberOfSide" header="Number Of Side" [resizable]="true"></igx-column>
+          <igx-column field="grossTradeAmount" header="Gross Trade Amount" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="side" header="side" [resizable]="true"></igx-column>
+          <igx-column field="orderId" header="Order Id" [resizable]="true"></igx-column>
+          <igx-column field="clientOrderId" header="Client Order Id" [resizable]="true"></igx-column>
+          <igx-column field="accountNumber" header="Account Number" [resizable]="true"></igx-column>
+          <igx-column field="secFee" header="Sec Fee" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="centralSecurityDepositFee" header="Central Security Deposit Fee"
+                      [resizable]="true" dataType="number" [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="tradeAlertFee" header="Trade Alert Fee" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="stampDutyFee" header="Stamp Duty Fee" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="brokerageFee" header="Brokerage Fee" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+          <igx-column field="exchangeFee" header="Exchange Fee" [resizable]="true" dataType="number"
+                      [pipeArgs]="pipeArgs"></igx-column>
+
+          <igx-row-island [key]="'parties'" [autoGenerate]="false">
+            <igx-column field="partyId" header="Party Id" [resizable]="true"></igx-column>
+            <igx-column field="partyIdSource" header="Party Id Source" [resizable]="true"></igx-column>
+            <igx-column field="partyRole" header="Party Role" [resizable]="true"></igx-column>
+          </igx-row-island>
+        </igx-row-island>
+
+    </igx-hierarchical-grid>
+  </div>
+</div>
+
+<div *ngIf="indicator===4">
+  <div class="grid__wrapper">
+    <!--  <igx-hierarchical-grid class="hierarchicalGrid" [data]="tradingMembers" (columnResized)="onResize($event)" [autoGenerate]="false"-->
+    <!--                         [height]="'480px'" [width]="'100%'" [rowHeight]="'65px'" #hierarchicalGrid>-->
     <igx-hierarchical-grid class="hierarchicalGrid" [data]="tradT" (columnResized)="onResize($event)"
                            [autoGenerate]="false"
                            [width]="'100%'" [rowHeight]="'65px'" #hierarchicalGrid>

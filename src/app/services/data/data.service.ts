@@ -176,6 +176,12 @@ export class DataService {
     // this.tcl = tradingClientSet.size;
 
 
+    this.accountTradesArr.push('Select ...');
+    const accountTradeSet = new Set(this.accountTradesArr);
+    // @ts-ignore
+    this.accountTradesArr = accountTradeSet;
+
+
     this.tradesArr.push('Select ...');
     const tradeSet = new Set(this.tradesArr);
     // @ts-ignore
@@ -350,23 +356,27 @@ export class DataService {
 
   getTradingClientSelectionData(identifier: string) {
 
-    const tradingClient: any[] = [];
+    const accountTrades: any[] = [];
     // @ts-ignore
     for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
       for (const tradingCc of tradingMm.tradingClients) {
         if (tradingCc.identifier === identifier) {
-          tradingClient.push(tradingCc.fistName.toUpperCase().concat(' ').concat(tradingCc.lastName.toUpperCase()));
+          for (const trader of tradingCc.accountTrades) {
+            accountTrades.push(trader.accountNumber);
+          }
 
-          console.log('CLIENTSSSS');
-          console.log(tradingClient);
-          break;
+          // tradingClient.push(tradingCc.fistName.toUpperCase().concat(' ').concat(tradingCc.lastName.toUpperCase()));
+          //
+          // console.log('CLIENTSSSS');
+          // console.log(tradingClient);
+          // break;
         }
       }
     }
 
-    tradingClient.push('Select ...');
-    const tradingTradeSet = new Set(tradingClient);
-    return tradingTradeSet;
+    accountTrades.push('Select ...');
+    const accountTradeSet = new Set(accountTrades);
+    return accountTradeSet;
 
   }
 

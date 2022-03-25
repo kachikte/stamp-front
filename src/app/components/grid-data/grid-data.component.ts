@@ -38,6 +38,7 @@ export class GridDataComponent implements OnInit, OnChanges {
   tradM: any;
   tradC: any[] | null = [];
   tradT: any[] | null = [];
+  acctT: any[] | null = [];
   prT: any[] | null = [];
 
   items: any;
@@ -133,25 +134,41 @@ export class GridDataComponent implements OnInit, OnChanges {
     }
 
     if (this.indicator === 3) {
-      for (const trat of trllt) {
-        if (trat.securityCode === this.code) {
-          trt.push(trat);
+      for (const acct of acllt) {
+        if (acct.accountNumber === this.code) {
+          atr.push(acct);
         }
       }
 
+      this.acctT = atr;
+    }
+
+    if (this.indicator === 4) {
+      for (const trd of trllt) {
+        console.log('CODE ONE');
+        console.log(trd.securityCode);
+        console.log('CODE TWO');
+        console.log(this.code);
+        if (trd.securityCode.toUpperCase() === this.code.toUpperCase()) {
+          trt.push(trd);
+        }
+      }
+
+      console.log('THIS IS THE TRADE!!!!!!');
+      console.log(trt);
       this.tradT = trt;
     }
 
 
-    if (this.indicator === 4) {
-      for (const prat of prllt) {
-        if (prat.partyId === this.code) {
-          prt.push(prat);
-        }
-      }
-
-      this.prT = prt;
-    }
+    // if (this.indicator === 4) {
+    //   for (const prat of prllt) {
+    //     if (prat.partyId === this.code) {
+    //       prt.push(prat);
+    //     }
+    //   }
+    //
+    //   this.prT = prt;
+    // }
 
   }
 

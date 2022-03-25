@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
   tradingClientsArr: any[] = [];
   tradingClientsSet: Set<any>;
   tradesArr: any[] = [];
+  acctTradesArr: any[] = [];
+  accountTradeSet: Set<any>;
   tradeSet: Set<any>;
   partiesArr: any[] = [];
   partiesSet: Set<any>;
@@ -83,7 +85,10 @@ export class DashboardComponent implements OnInit {
       this.tradingClientsArr = this.dataSer.tradingClientsArr;
       this.tcLength = this.dataSer.getTradingClients().length;
       this.acLength = this.dataSer.getAccountTrades().length;
+      this.acctTradesArr = this.dataSer.accountTradesArr;
       this.tradesArr = this.dataSer.tradesArr;
+      console.log('TRAAAAAAAAAAAAAADD');
+      console.log(this.dataSer.tradesArr);
       this.tLength = this.dataSer.getTrades().length;
       this.partiesArr = this.dataSer.partiesArr;
       this.pLength = this.dataSer.getParties().length;
@@ -92,9 +97,9 @@ export class DashboardComponent implements OnInit {
       this.tradingMember = this.getTradingMemberDetail();
       this.tradingClientsSet = this.dataSer.getTradingMemberSelectionData(this.name);
     } else if (this.role === 'tradingClient') {
-      this.selIndicator = 2;
+      this.selIndicator = 3;
       this.tradingClient = this.getTradingClientDetail();
-      this.tradeSet = this.dataSer.getTradingClientSelectionData(this.name);
+      this.accountTradeSet = this.dataSer.getTradingClientSelectionData(this.name);
     }
 
   }

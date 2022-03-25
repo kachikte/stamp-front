@@ -555,12 +555,22 @@
         </div>
 
         <div>
+          <p>Select an Account Trade</p>
+          <select name="trades" id="at" #selectAT (change)="setCode(selectAT.value)">
+            <option *ngFor="let ar of acctTradesArr" value="{{ar}}" [selected]="ar==='Select ...'">{{ar}}</option>
+          </select>
+          <br>
+          <button class="btn btn-danger" (click)="getIndicator('3')" style="margin-left: 5px;">Go</button>
+          <br>
+        </div>
+
+        <div>
           <p>Select a Trade</p>
           <select name="trades" id="t" #selectT (change)="setCode(selectT.value)">
             <option *ngFor="let tr of tradesArr" value="{{tr}}" [selected]="tr==='Select ...'">{{tr}}</option>
           </select>
           <br>
-          <button class="btn btn-danger" (click)="getIndicator('3')" style="margin-left: 5px;">Go</button>
+          <button class="btn btn-danger" (click)="getIndicator('4')" style="margin-left: 5px;">Go</button>
           <br>
         </div>
 
@@ -577,22 +587,17 @@
           <br>
           <button class="btn btn-danger" (click)="getIndicator('2')" style="margin-left: 5px;">Go</button>
           <br>
-          <!--          <ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
-          <!--          <br/>-->
-          <!--          <button class="btn btn-success" style="margin-left: 5px;">Pay Stamp Duty</button>-->
-          <!--          <br>-->
         </div>
 
         <div *ngIf="role==='tradingClient'">
-          <p>Select a Trade</p>
-          <select name="trades" id="ts" #selectT (change)="setCode(selectT.value)">
-            <option *ngFor="let tr of tradeSet" value="{{tr}}" [selected]="tr==='Select ...'">{{tr}}</option>
+          <p>Select an Account Trade</p>
+          <select name="trades" id="ts" #selectAr (change)="setCode(selectAr.value)">
+            <option *ngFor="let ar of accountTradeSet" value="{{ar}}" [selected]="ar==='Select ...'">{{ar}}</option>
           </select>
           <br>
           <button class="btn btn-danger" (click)="getIndicator('3')" style="margin-left: 5px;">Go</button>
           <br>
         </div>
-        <!--      </div>-->
       </div>
     </div>
 
