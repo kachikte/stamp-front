@@ -1,0 +1,104 @@
+{
+  "users": {
+    "dets": [
+      {
+        "username": "admin@stampduty",
+        "password": "admin@stampduty",
+        "name": "superAdmin",
+        "role": "superAdmin"
+      },
+      {
+        "username": "tm@stampduty",
+        "password": "tm@stampduty",
+        "name": "adminTm",
+        "role": "adminTm"
+      },
+      {
+        "username": "tc@stampduty",
+        "password": "tc@stampduty",
+        "name": "adminTc",
+        "role": "adminTc"
+      },
+      {
+        "username": "t@stampduty",
+        "password": "t@stampduty",
+        "name": "adminT",
+        "role": "adminT"
+      },
+      {
+        "username": "dsbs@stampduty",
+        "password": "dsbs@stampduty",
+        "name": "dsbs",
+        "role": "tradingMember"
+      },
+      {
+        "username": "sisb@stampduty.com",
+        "password": "sisb@stampduty.com",
+        "name": "sisb",
+        "role": "tradingMember"
+      },
+      {
+        "username": "eqtl@stampduty",
+        "password": "eqtl@stampduty",
+        "name": "eqtl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "apt@stampduty",
+        "password": "apt@stampduty",
+        "name": "apt",
+        "role": "tradingMember"
+      },
+      {
+        "username": "fbc@stampduty",
+        "password": "fbc@stampduty",
+        "name": "fbc",
+        "role": "tradingMember"
+      },
+      {
+        "username": "apel@stampduty",
+        "password": "apel@stampduty",
+        "name": "apel",
+        "role": "tradingMember"
+      },
+      {
+        "username": "nova@stampduty",
+        "password": "nova@stampduty",
+        "name": "nova",
+        "role": "tradingMember"
+      },
+      {
+        "username": "sti@stampduty",
+        "password": "sti@stampduty",
+        "name": "sti",
+        "role": "tradingMember"
+      },
+      {
+        "username": "ffcl@stampduty",
+        "password": "ffcl@stampduty",
+        "name": "ffcl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "sisl@stampduty",
+        "password": "sisl@stampduty",
+        "name": "sisl",
+        "role": "tradingMember"
+      },
+      {
+        "username": "pacs@stampduty",
+        "password": "pacs@stampduty",
+        "name": "pacs",
+        "role": "tradingMember"
+      },
+      {
+        "username": "clientOne@stampduty",
+        "password": "clientOne@stampduty",
+        "name": "NIN-00658260",
+        "firstName":  "Saudat",
+        "lastName": "Abdulhamid",
+        "role": "tradingClient"
+      }
+    ]
+  }
+}

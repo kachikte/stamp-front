@@ -27,6 +27,10 @@ export class MarketDashboardComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.name === null) {
+      this.reDir();
+    }
+
     if (this.role === 'superAdmin') {
       this.markets = this.dataSer.getAdminMarket();
     } else if (this.role === 'tradingMember') {
@@ -45,6 +49,10 @@ export class MarketDashboardComponent implements OnInit {
     } else if (this.role === 'tradingClient') {
       this.router.navigate(['/member-dashboard']);
     }
+  }
+
+  reDir() {
+    this.router.navigate(['/login']);
   }
 
 }

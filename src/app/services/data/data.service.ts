@@ -18,10 +18,6 @@ export class DataService {
   partiesArr: any[] = [];
 
   constructor() {
-    // this.getSelectionData();
-    // console.log('THE JSON DATA');
-    // @ts-ignore
-    // console.log(this.getData().marketData.market);
   }
 
   getAdminMarket() {
