@@ -16,6 +16,8 @@ import {DataService} from '../../services/data/data.service';
 })
 export class MemberDashboardComponent implements OnInit {
 
+  marketCodeGlobal = localStorage.getItem('marketCode');
+
   name = localStorage.getItem('name');
   role = localStorage.getItem('role');
 
@@ -28,7 +30,9 @@ export class MemberDashboardComponent implements OnInit {
       this.tradingMembers = this.dataSer.getClientTradingMemberSelection(this.name);
   }
 
-  submitTradingMemberCode() {
+  submitTradingMemberCode(tm: string) {
+    
+    localStorage.setItem('tempMem', tm);
       this.router.navigate(['/dashboard']);
   }
 

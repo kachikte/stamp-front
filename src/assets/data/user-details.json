@@ -2,8 +2,8 @@
   "users": {
     "dets": [
       {
-        "username": "admin@stampduty",
-        "password": "admin@stampduty",
+        "username": "admin@stampduty.com",
+        "password": "admin@stampduty.com",
         "name": "superAdmin",
         "role": "superAdmin"
       },
@@ -92,8 +92,8 @@
         "role": "tradingMember"
       },
       {
-        "username": "clientOne@stampduty",
-        "password": "clientOne@stampduty",
+        "username": "clientOne@stampduty.com",
+        "password": "clientOne@stampduty.com",
         "name": "NIN-00658260",
         "firstName":  "Saudat",
         "lastName": "Abdulhamid",

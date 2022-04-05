@@ -1,4 +1,16 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div *ngIf="marketCodeGlobal" container-fluid>
+    <div style="padding: 30px; font-weight: bolder; color: white; font-size: 30px;">
+      Market: {{marketCodeGlobal}}
+    </div>
+  </div>
+
+  <div container-fluid>
+    <div style="padding: 20px; font-weight: bolder; color: white; font-size: 30px;">
+      Trading Member: {{tempMemCodeGlobal}}
+    </div>
+  </div>
+  
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
@@ -284,7 +296,8 @@
 <!--        </div>-->
       </div>
 
-      <table *ngIf="this.role === 'tradingMember'">
+      <div style="overflow-x:auto;" *ngIf="this.role === 'tradingMember'">
+      <table>
         <tr>
           <th>Total Stamp Duty</th>
           <th>Total Gross Amount</th>
@@ -300,8 +313,14 @@
           <td>{{tradingMember.vatOnBrokerageFees | number:'1.1-2'}}</td>
         </tr>
       </table>
+      </div>
 
       <div class="row" *ngIf="role === 'tradingClient'">
+        <!-- <div container-fluid>
+          <div style="padding: 20px; font-weight: bolder; color: white; font-size: 30px;">
+            Trading Member: {{tempMemCodeGlobal}}
+          </div>
+        </div> -->
         <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
@@ -497,7 +516,8 @@
 <!--        </div>-->
       </div>
 
-      <table *ngIf="this.role === 'tradingClient'">
+      <div style="overflow-x:auto;" *ngIf="this.role === 'tradingClient'">
+      <table>
         <tr>
           <th>Total Stamp Duty</th>
           <th>Total Gross Amount</th>
@@ -517,6 +537,7 @@
           <td>{{tradingClient.totalSecFees | number:'1.1-2'}}</td>
         </tr>
       </table>
+    </div>
 
     </div>
   </div>
@@ -525,7 +546,7 @@
 
   <div class="row mt-5" style="padding-bottom: 50px">
 
-    <div class="col-xl-2 col-lg-2 col-sm-12 col-xs-12 mb-5 mb-xl-0">
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-5 mb-xl-0">
       <div class="card shadow" *ngIf="role === 'superAdmin'" style="padding: 25px;">
         <div>
           <button class="btn btn-danger" (click)="getIndicator('0')" style="margin-left: 5px;">Admin Reset</button>
@@ -543,7 +564,7 @@
           <br>
         </div>
 
-        <div>
+        <!-- <div>
           <p>Select a Trading Client</p>
           <select name="tradingClients" id="tc" #selectTc (change)="setCode(selectTc.value)">
             <option *ngFor="let tCli of tradingClientsArr" value="{{tCli}}"
@@ -572,7 +593,7 @@
           <br>
           <button class="btn btn-danger" (click)="getIndicator('4')" style="margin-left: 5px;">Go</button>
           <br>
-        </div>
+        </div> -->
 
       </div>
 
@@ -601,7 +622,7 @@
       </div>
     </div>
 
-    <div class="col-xl-10 col-lg-10 col-sm-12 col-xs-12">
+    <div class="col-xl-10 col-lg-8 col-md-8 col-sm-12 col-xs-12">
       <app-grid-data [indicator]="selIndicator" [code]="code"></app-grid-data>
     </div>
   </div>
