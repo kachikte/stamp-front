@@ -18,6 +18,7 @@ import {DataService} from '../../services/data/data.service';
 export class DashboardComponent implements OnInit {
   marketCodeGlobal = localStorage.getItem('marketCode');
   tempMemCodeGlobal = localStorage.getItem('tempMem');
+  
   tcTotalExchangeFees = 0;
 
   tTotalPrice = 0;

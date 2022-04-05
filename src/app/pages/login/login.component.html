@@ -1,66 +1,74 @@
-<div class="header bg-gradient-danger py-7 py-lg-8">
-  <div class="container">
-    <div class="header-body text-center mb-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h5 class="text-white">Welcome!</h5>
-          <img src="assets/img/brand/FIRS-removebg-preview.png">
-        </div>
-      </div>
+<!-- <div class="container-fluid w-100" style="background-color: blue;"> -->
+  <div class="container-fluid w-100">
+
+  <div class="row">
+    <!-- <div class="col-7  vh-100" style="background-color: red; padding: 0;"> -->
+      <div class="col-7  vh-100" style="padding: 0;">
+      <img src="assets/img/brand/npmmmm.jpeg" class="w-100 vh-100">
     </div>
+    <div class="col-5 vh-100" style="padding: 0;">
+      <div class="card-header"  style="background-color: white">
+        <div style="text-align: center; padding: 100;">
+          <img src="assets/img/brand/FIRS-removebg-preview.png" height="100px" width="100px">
+        </div>
+      </div>
+
+
+
+      <!-- <div class="card-body px-lg-5 py-lg-5" style="background-color: white"> -->
+  <div class="card-body" style="background-color: white">
+
+    <div style="text-align: center; font-weight: bolder; padding-top: 40px; font-size: 20px;">
+        Login to your account
+    </div>
+
+    <div style="text-align: center; padding-top: 20px; padding-bottom: 35px;">
+      <span>Don't have an account? </span>
+      <span style="font-weight: bolder; font-size: 20px; color: red;">SignUp Free!</span>
   </div>
-</div>
-<!-- Page content -->
-<div class="container mt--8 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-          <div class="btn-wrapper text-center" style="background-color: white">
+
+    <form role="form" (ngSubmit)="submit(h)" #h="ngForm">
+      <div class="form-group mb-3">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
           </div>
-        </div>
-        <div class="card-body px-lg-5 py-lg-5" style="background-color: white">
-<!--          <div class="text-center text-muted mb-4">-->
-<!--            <small>Or sign in with credentials</small>-->
-<!--          </div>-->
-          <form role="form" (ngSubmit)="submit(h)" #h="ngForm">
-            <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" placeholder="Email" type="email" ngModel name="username">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input class="form-control" placeholder="Password" type="password" ngModel name="password">
-              </div>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-              <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Remember me</span>
-              </label>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4">Sign in</button>
-            </div>
-          </form>
+          <input class="form-control" placeholder="Email" type="email" ngModel name="username">
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
-        </div>
-        <div class="col-6 text-right">
-          <a href="javascript:void(0)" class="text-light"><small>Create new account</small></a>
+      <div class="form-group">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+          </div>
+          <input class="form-control" placeholder="Password" type="password" ngModel name="password">
         </div>
       </div>
+      <div class="custom-control custom-control-alternative custom-checkbox">
+        <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+        <label class="custom-control-label" for=" customCheckLogin">
+          <span class="text-muted">Remember me</span>
+        </label>
+      </div>
+
+      <div class="col-sm-12 mb-2">
+        <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+        <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+          <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+        </div>
+      </div>
+
+      <div style="text-align: end; font-weight: bolder; padding: 35px; font-size: 15px; color: red;">
+        Forgot Password?
+    </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-danger my-4 w-75">Login</button>
+      </div>
+    </form>
+
+    
+
+  </div>
     </div>
   </div>
 </div>

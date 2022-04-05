@@ -31,6 +31,7 @@ export class MemberDashboardComponent implements OnInit {
   }
 
   submitTradingMemberCode(tm: string) {
+    localStorage.removeItem('tempMem');
     
     localStorage.setItem('tempMem', tm);
       this.router.navigate(['/dashboard']);
