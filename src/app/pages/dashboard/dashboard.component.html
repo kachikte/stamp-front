@@ -15,136 +15,40 @@
     <div class="header-body">
       <!-- Card stats -->
       <div class="row" *ngIf="this.role === 'superAdmin'">
-        <div style="overflow-x:auto;">
-          <table>
+        <div style="overflow-x:auto; width: 100%;">
+          <table id="admin">
             <tr>
-              <th>Trading Members</th>
-              <th>Trading Clients</th>
-              <th>Account Trades</th>
-              <th>Trades</th>
-              <th>Parties</th>
+              <td>Trading Members</td>
+              <td>Trading Clients</td>
+              <td>Account Trades</td>
+              <td>Trades</td>
+              <td>Parties</td>
             </tr>
             <tr>
-              <td>{{tmLength | number:'1.1-2'}}</td>
-              <td>{{tcLength | number:'1.1-2'}}</td>
-              <td>{{acLength | number:'1.1-2'}}</td>
-              <td>{{tLength | number:'1.1-2'}}</td>
-              <td>{{pLength | number:'1.1-2'}}</td>
+              <td>{{tmLength}}</td>
+              <!-- <td>{{tmLength | number:'1.1-2'}}</td> -->
+              <td>{{tcLength}}</td>
+              <td>{{acLength}}</td>
+              <td>{{tLength}}</td>
+              <td>{{pLength}}</td>
             </tr>
           </table>
           </div>
 
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Trading Members</h5>
-                  <span class="h2 font-weight-bold mb-0">{{tmLength}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Trading Clients</h5>
-                  <span class="h2 font-weight-bold mb-0">{{tcLength}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Account Trades</h5>
-                  <span class="h2 font-weight-bold mb-0">{{acLength}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Trades</h5>
-                  <span class="h2 font-weight-bold mb-0">{{tLength}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Parties</h5>
-                  <span class="h2 font-weight-bold mb-0">{{pLength}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Back to Market Place</h5>
-                  <button class="btn btn-primary" (click)="back()">Back</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-
-      <div class="row" *ngIf="this.role === 'tradingMember'">
-        <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Trading Clients</h5>
-                  <span class="h2 font-weight-bold mb-0">{{tradingMember.tradingClients.length | number}}</span>
-                </div>
-                <!-- <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p> -->
-              <div class="col">
-                <button class="btn btn-primary" (click)="back()">Back</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div>     
 
       <div style="overflow-x:auto;" *ngIf="this.role === 'tradingMember'">
-      <table>
+      <table id="member">
         <tr>
-          <th>Total Stamp Duty</th>
-          <th>Total Gross Amount</th>
-          <th>Total Exchange Fees</th>
-          <th>Total Brokerage Fees</th>
-          <th>VAT on Brokerage Fees</th>
+          <td>Trading Clients</td>
+          <td>Total Stamp Duty</td>
+          <td>Total Gross Amount</td>
+          <td>Total Exchange Fees</td>
+          <td>Total Brokerage Fees</td>
+          <td>VAT on Brokerage Fees</td>
         </tr>
         <tr>
+          <td>{{tradingMember.tradingClients.length | number}}</td>
           <td>{{tradingMember.totalStampDutyFees | number:'1.1-2'}}</td>
           <td>{{tradingMember.totalGrossAmount | number:'1.1-2'}}</td>
           <td>{{tradingMember.totalExchangeFees | number:'1.1-2'}}</td>
@@ -154,45 +58,43 @@
       </table>
       </div>
 
-      <div class="row" *ngIf="role === 'tradingClient'">
+      <div class="row" *ngIf="this.role === 'tradingMember'">
         <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
-          <div class="card card-stats mb-4 mb-xl-0">
+          <!-- <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Trades</h5>
-                  <span class="h2 font-weight-bold mb-0">{{tradingClient.accountTrades.length | number}}</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Trading Clients</h5>
+                  <span class="h2 font-weight-bold mb-0">{{tradingMember.tradingClients.length | number}}</span>
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
               </p>
               <div class="col">
                 <button class="btn btn-primary" (click)="back()">Back</button>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
+      
 
       <div style="overflow-x:auto;" *ngIf="this.role === 'tradingClient'">
-      <table>
+      <table id="client">
         <tr>
-          <th>Total Stamp Duty</th>
-          <th>Total Gross Amount</th>
-          <th>Total Exchange Fees</th>
-          <th>Total Brokerage Fees</th>
-          <th>Total Central Security Deposit Fees</th>
-          <th>Total Trade Alert Fees</th>
-          <th>Total Sec Fees</th>
+          <td>Trades</td>
+          <td>Total Stamp Duty</td>
+          <td>Total Gross Amount</td>
+          <td>Total Exchange Fees</td>
+          <td>Total Brokerage Fees</td>
+          <td>Total Central Security Deposit Fees</td>
+          <td>Total Trade Alert Fees</td>
+          <td>Total Sec Fees</td>
         </tr>
         <tr>
+          <td>{{tradingClient.accountTrades.length | number}}</td>
           <td>{{tradingClient.totalStampDutyFees | number:'1.1-2'}}</td>
           <td>{{tradingClient.totalGrossAmount | number:'1.1-2'}}</td>
           <td>{{tradingClient.totalExchangeFees | number:'1.1-2'}}</td>
@@ -204,6 +106,34 @@
       </table>
     </div>
 
+
+    <div class="row" *ngIf="role === 'tradingClient'">
+      <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
+        <!-- <div class="card card-stats mb-4 mb-xl-0">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0">Trades</h5>
+                <span class="h2 font-weight-bold mb-0">{{tradingClient.accountTrades.length | number}}</span>
+              </div>
+              <div class="col-auto">
+                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p>
+            <div class="col">
+              <button class="btn btn-primary" (click)="back()">Back</button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
     </div>
   </div>
 </div>
@@ -211,24 +141,17 @@
 
   <div class="row mt-5" style="padding-bottom: 50px">
 
-    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-5 mb-xl-0">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-5 mb-xl-0">
       <div class="card shadow" *ngIf="role === 'superAdmin'" style="padding: 25px;">
-        <div>
-          <button class="btn btn-danger" (click)="getIndicator('0')" style="margin-left: 5px;">Admin Reset</button>
-          <br>
-        </div>
 
-        <br>
-
-        <div>
-          <div>Select a Trading Member</div>
-          <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)">
+        <div style="display: inline; align-content: space-between;">
+          <button class="btn btn-danger" (click)="getIndicator('0')" style="margin: 5px;">Admin Reset</button>
+          <div style="display: inline; margin: 10px;">Select a Trading Member</div>
+          <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;">
             <option *ngFor="let tMem of tradingMembersArr" value="{{tMem}}"
                     [selected]="tMem==='Select ...'">{{tMem}}</option>
           </select>
-          <br>
-          <button class="btn btn-danger" (click)="getIndicator('1')" style="margin-left: 5px;">Go</button>
-          <br>
+          <button style="display: inline;" class="btn btn-danger" (click)="getIndicator('1')" style="margin-left: 5px;">Go</button>
         </div>
 
       </div>
@@ -236,29 +159,27 @@
       <div class="card shadow" *ngIf="role !== 'superAdmin'" style="padding: 25px;">
 
         <div *ngIf="role==='tradingMember'">
-          <p>Select a Trading Client</p>
-          <select name="tradingClients" id="tcs" #selectTc (change)="setCode(selectTc.value)">
+          <p style="display: inline; padding: 10px;">Select a Trading Client</p>
+          <select style="display: inline; margin: 10px;" name="tradingClients" id="tcs" #selectTc (change)="setCode(selectTc.value)">
             <option *ngFor="let tCli of tradingClientsSet" value="{{tCli}}"
                     [selected]="tCli==='Select ...'">{{tCli}}</option>
           </select>
-          <br>
-          <button class="btn btn-danger" (click)="getIndicator('2')" style="margin-left: 5px;">Go</button>
-          <br>
+          <button style="display: inline;" class="btn btn-danger" (click)="getIndicator('2')" style="margin-left: 5px;">Go</button>
         </div>
 
         <div *ngIf="role==='tradingClient'">
-          <p>Select an Account Trade</p>
-          <select name="trades" id="ts" #selectAr (change)="setCode(selectAr.value)">
+          <p style="display: inline; padding: 10px;">Select an Account Trade</p>
+          <select style="display: inline; margin: 10px;" name="trades" id="ts" #selectAr (change)="setCode(selectAr.value)">
             <option *ngFor="let ar of accountTradeSet" value="{{ar}}" [selected]="ar==='Select ...'">{{ar}}</option>
           </select>
-          <br>
-          <button class="btn btn-danger" (click)="getIndicator('3')" style="margin-left: 5px;">Go</button>
-          <br>
+          <button style="display: inline; padding: 10px;" class="btn btn-danger" (click)="getIndicator('3')" style="margin-left: 5px;">Go</button>
         </div>
       </div>
     </div>
 
-    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <div style="padding: 20px;"></div>
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <app-grid-data [indicator]="selIndicator" [code]="code"></app-grid-data>
     </div>
   </div>
