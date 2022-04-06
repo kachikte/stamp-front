@@ -18,7 +18,7 @@ export const ROUTESADMIN: RouteInfo[] = [
     { path: '/user-profile', title: 'User profile',  icon: 'ni-single-02 text-yellow', class: '' },
     // { path: '/tables', title: 'Tables',  icon: 'ni-bullet-list-67 text-red', class: '' },
     // { path: '/login', title: 'Login',  icon: 'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon: 'ni-circle-08 text-pink', class: '' }
+    // { path: '/register', title: 'Register',  icon: 'ni-circle-08 text-pink', class: '' }
 ];
 
 export const ROUTES: RouteInfo[] = [
@@ -55,6 +55,7 @@ export class SidebarComponent implements OnInit {
   paymentData: InlinePaymentOptions = {
     public_key: this.publicKey,
     tx_ref: this.generateReference(),
+
     amount: this.role === 'tradingMember' ? this.tradingMember.totalStampDutyFees : 0,
     currency: 'NGN',
     payment_options: 'card,ussd',
@@ -157,6 +158,7 @@ export class SidebarComponent implements OnInit {
 
   getTradingMemberDetail() {
     const tradingMemberCode = localStorage.getItem('name');
+
     return this.dataSer.getSpecificTradingMember(tradingMemberCode);
   }
 

@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable, Output, SimpleChanges} from '@angular/core';
 import * as data from '../../../assets/data/data.json';
+import * as dataOne from '../../../assets/data/dataOne.json';
 import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
 
@@ -9,7 +10,9 @@ import {Party} from '../../model/Party';
 export class DataService {
 
   markt: string;
-  market = data;
+  market = localStorage.getItem('role') === 'superAdmin' ? dataOne : data;
+  // market = data;
+
   usr = usrs;
   tradingMembersArr: any[] = [];
   tradingClientsArr: any[] = [];

@@ -17,6 +17,9 @@ import { IgxHierarchicalGridModule } from 'igniteui-angular';
 import {DataService} from './services/data/data.service';
 import {NgxPayPalModule} from 'ngx-paypal';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from '../environments/environment';
+
 
 
 
@@ -32,13 +35,23 @@ import { FlutterwaveModule } from 'flutterwave-angular-v3';
     FlutterwaveModule,
     IgxHierarchicalGridModule,
     NgxPayPalModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent
+    ],
+  providers: [
+    DataService,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey
+      } as RecaptchaSettings,
+    },
   ],
-  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
