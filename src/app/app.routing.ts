@@ -7,9 +7,11 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {LoginComponent} from './pages/login/login.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
   {
     path: '',
     redirectTo: 'market-dashboard',

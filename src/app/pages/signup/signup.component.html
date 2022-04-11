@@ -1,0 +1,135 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12"  style="background-color: white; padding-left: 20%; padding-right: 20%;">
+            <div class="card">
+                <div class="card-header" style="border-width: 0 0 7px; border-color: red;">
+                    <div class="row">
+                        <div class="col-lg-6" style="text-align: left;"><img height="100px" width="100px" src="assets/img/brand/FIRS-removebg-preview.png"></div>
+                        <div class="col-lg-6" style="text-align: right;"><a [routerLink]="'/login'">Back to login page</a></div>
+                    </div>
+                </div>
+                <div class="card-body" style="padding: 70px;">
+                    <div style="text-align: center; margin: 20px;">
+                        Sign up to get instant access
+                    </div>
+                    <div style="margin: 10px;"></div>
+                    <form role="form" (ngSubmit)="submit()" #h="ngForm">
+
+
+                        <div style="text-align: left;">Market <sup style="color: red;">*</sup></div>
+                        <div class="form-group mb-3">
+                            <div class="input-group input-group-alternative">
+                                <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
+                                    <select name="market" id="m" #selectM style="margin: 10px; width: 100%; border-style: none;">
+                                <option *ngFor="let mar of marketArr" value="{{mar}}"
+                                [selected]="mar==='Select ...'">{{mar}}</option>
+                      </select>
+                            </div>
+                          </div>
+                          <div style="text-align: left; margin: 0; padding: 0;">
+                              Market does not exist? Click <a href="#"><span>here</span></a>
+                          </div>
+        
+                       
+                          <div style="height: 30px;">
+                        </div>
+
+
+
+        
+                        <div style="text-align: left;">Broker <sup style="color: red;">*</sup></div>
+                        <div class="form-group mb-3">
+                            <div class="input-group input-group-alternative">
+                                <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
+                                    <select name="tradingMembers" id="tm" #selectTm style="margin: 10px; width: 100%; border-style: none;">
+                                <option *ngFor="let mem of memberArr" value="{{mem}}"
+                                [selected]="mem==='Select ...'">{{mem}}</option>
+                      </select>
+                            </div>
+                          </div>
+                          <div style="text-align: left; margin: 0; padding: 0;">
+                              Broker does not exist? Click <a href="#"><span>here</span></a>
+                          </div>
+        
+                       
+                          <div style="height: 30px;">
+                        </div>
+        
+                       <div class="row">
+                        <div class="col-lg-5">
+                            <div style="text-align: left;">Password <sup style="color: red;">*</sup></div>
+                            <div class="form-group">
+                              <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Password" type="password" ngModel name="password">
+                              </div>
+                            </div>
+                        </div>
+        
+                           <div class="col-lg-2"></div>
+        
+                           <div class="col-lg-5">
+                            <div style="text-align: left;">Confirm Password <sup style="color: red;">*</sup></div>
+                            <div class="form-group">
+                              <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Confirm Password" type="confirmPassword" ngModel name="confirmPassword">
+                              </div>
+                            </div>
+                        </div>
+                       </div>
+        
+                       <div style="height: 30px;">
+                    </div>
+        
+        
+                       <div class="row">
+                        <div class="col-lg-5">
+                            <div style="text-align: left;">Secret Question <sup style="color: red;">*</sup></div>
+                            <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                    <!-- <select name="secretQuestions" id="sq" #selectSq (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
+                                        <select name="secretQuestions" id="sq" #selectSq style="margin: 10px; width: 100%; border-style: none;">
+                                    <option *ngFor="let seQu of secretQuestion" value="{{seQu}}"
+                                    [selected]="mar==='Select ...'">{{seQu}}</option>
+                          </select>
+                                </div>
+                              </div>
+                        </div>
+        
+                        <div class="col-lg-2"></div>
+        
+                        <div class="col-lg-5">
+                            <div style="text-align: left;">Answer <sup style="color: red;">*</sup></div>
+                            <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                  </div>
+                                  <input class="form-control" placeholder="Answer" type="text" ngModel name="answer">
+                                </div>
+                              </div>
+                           </div>
+                    </div>
+        
+        
+                        <div class="custom-control custom-control-alternative custom-checkbox">
+                          <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                          <label class="custom-control-label" for=" customCheckLogin">
+                            <span class="text-muted">I agree with</span>
+                            <a href="#" style="text-decoration: none;"><span> Terms & Conditions</span></a>
+                          </label>
+                        </div>
+                        <div>
+                          <button type="submit" class="btn btn-primary my-4" style="border-radius: 20em;"><span style="padding-right: 10px; padding-left: 10px;">Signup</span></button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

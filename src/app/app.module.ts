@@ -22,7 +22,6 @@ import { environment } from '../environments/environment';
 
 
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -42,7 +41,7 @@ import { environment } from '../environments/environment';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent
-    ],
+      ],
   providers: [
     DataService,
     {
