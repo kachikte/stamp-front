@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import Chart from 'chart.js';
-import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import {IPayPalConfig, ICreateOrderRequest} from 'ngx-paypal';
 // @ts-ignore
 import {Market} from '../../model/Market';
 import {TradingClient} from '../../model/TradingClient';
@@ -8,6 +8,7 @@ import {Trade} from '../../model/Trade';
 import {Party} from '../../model/Party';
 import {Router} from '@angular/router';
 import {DataService} from '../../services/data/data.service';
+
 @Component({
   selector: 'app-market-dashboard',
   templateUrl: './market-dashboard.component.html',
