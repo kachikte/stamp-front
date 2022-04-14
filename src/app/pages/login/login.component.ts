@@ -37,4 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSer.checkLogin(form.controls.username.value, form.controls.password.value) ? this.router.navigate(['/market-dashboard']) : this.router.navigate(['login']);
   }
 
+  signUp(id: number) {
+    this.router.navigate(['signup', id]);
+  }
+
 }
