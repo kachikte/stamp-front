@@ -3,6 +3,8 @@ import * as data from '../../../assets/data/data.json';
 import * as dataOne from '../../../assets/data/dataOne.json';
 import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class DataService {
   tradesArr: any[] = [];
   partiesArr: any[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getAdminMarket() {
@@ -408,5 +410,105 @@ export class DataService {
   //   return tradingPartySet;
   //
   // }
+
+
+  // getTradingMembersController() {
+  //   const url = 'http://50.116.33.99:8080/AnalyticsServices/tradeContractNotes/getTradingMembers?marketCode=' + 'NGX' + '&returnType=json';
+  //
+  //   console.log(url);
+  //     // tslint:disable-next-line:max-line-length
+  //   this.http.get(url).subscribe(response => {
+  //     console.log(response);
+  //   });
+  // }
+
+  // getTradingMembersController(marketCode: string) {
+  //
+  //   const headers = new HttpHeaders()
+  //     .append('Content-Type', 'application/json')
+  //     // .append('Access-Control-Allow-Headers', 'Content-Type')
+  //     .append('Access-Control-Allow-Methods', 'GET')
+  //     .append('Access-Control-Allow-Origin', '*');
+  //
+  //   const url = 'http://localhost:4040/notes/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
+  //   //   this.http.get(url, {headers}).subscribe(response => {
+  //   //     // tslint:disable-next-line:forin
+  //   //     for (const responseKey in response) {
+  //   //       console.log();
+  //   //     }
+  //   // });
+  //
+  //
+  //
+  //   this.http.get(url, {headers})
+  //     .pipe(map(
+  //     responseData => {
+  //       let postArray: [] = [];
+  //       // console.log(responseData['keyValueCollection']);
+  //       // tslint:disable-next-line:forin
+  //       const vaa = responseData['keyValueCollection'].map(
+  //         av =>  av.key
+  //       );
+  //
+  //       // console.log('JUST KEY', vaa);
+  //       //
+  //       // console.log('ENTIRE COLLECTION', responseData['keyValueCollection']);
+  //
+  //       postArray = responseData['keyValueCollection'];
+  //
+  //       return 'a';
+  //     }
+  //   ))
+  //     .subscribe(responseData => {
+  //       // console.log(responseData);
+  //     });
+  // }
+
+
+  getTradingMembersController(marketCode: string) {
+
+    let result = [];
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const url = 'http://localhost:4200/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
+    //   this.http.get(url, {headers}).subscribe(response => {
+    //     // tslint:disable-next-line:forin
+    //     for (const responseKey in response) {
+    //       console.log();
+    //     }
+    // });
+
+
+
+    this.http.get(url, {headers})
+      .pipe(map(
+        responseData => {
+          // let postArray: [] = [];
+          // console.log(responseData['keyValueCollection']);
+          // tslint:disable-next-line:forin
+          const vaa = responseData['keyValueCollection'].map(
+            av =>  result.push(av)
+          );
+
+          // console.log('JUST KEY', vaa);
+          //
+          // console.log('ENTIRE COLLECTION', responseData['keyValueCollection']);
+
+          result = responseData['keyValueCollection'];
+        }
+      ))
+      .subscribe(responseData => {
+        // console.log(responseData);
+      });
+
+    return result;
+  }
+
+
 
 }
