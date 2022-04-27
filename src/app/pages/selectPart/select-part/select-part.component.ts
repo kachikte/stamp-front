@@ -11,6 +11,8 @@ export class SelectPartComponent implements OnInit {
 
   typeArr = [{'key': '0', 'value': 'Trading Member'}, {'key': '1', 'value': 'Trading Client'}];
 
+  ngSel = 'Select...';
+
   constructor(private router: Router, public dialogRef: MatDialogRef<SelectPartComponent>) { }
 
   ngOnInit(): void {

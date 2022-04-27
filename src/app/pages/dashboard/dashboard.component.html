@@ -10,7 +10,7 @@
       Trading Member: {{tempMemCodeGlobal}}
     </div>
   </div>
-  
+
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
@@ -35,7 +35,7 @@
           </table>
           </div>
 
-      </div>     
+      </div>
 
       <div style="overflow-x:auto;" *ngIf="this.role === 'tradingMember'">
       <table id="member">
@@ -46,6 +46,7 @@
           <td>Total Exchange Fees</td>
           <td>Total Brokerage Fees</td>
           <td>VAT on Brokerage Fees</td>
+          <td>Payment Status</td>
         </tr>
         <tr>
           <td>{{tradingMember.tradingClients.length | number}}</td>
@@ -54,8 +55,19 @@
           <td>{{tradingMember.totalExchangeFees | number:'1.1-2'}}</td>
           <td>{{tradingMember.totalBrokerageFees | number:'1.1-2'}}</td>
           <td>{{tradingMember.vatOnBrokerageFees | number:'1.1-2'}}</td>
+          <td></td>
         </tr>
       </table>
+
+        <ngb-accordion (panelChange)="beforeChange($event)" *ngIf="role === 'tradingMember'">
+
+          <ngb-panel id="preventchange-1" title="I want to pay with Flutterwave - {{ role != 'tradingMember' ? 0 : tradingMemberA.totalStampDutyFees | number: '1.1-2'}}">
+            <ng-template ngbPanelContent>
+              <a (click)="makePayment()"><img src="./assets/img/brand/flutterwave-payment-removebg-preview.png" class="navbar-brand-img" alt="..."></a>
+              <!--            <button class="btn btn-primary" *ngIf="role==='tradingMember'" (click)="makePayment()" style="font-size: 15px">Make Payment<br></button>-->
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
       </div>
 
       <div class="row" *ngIf="this.role === 'tradingMember'">
@@ -79,7 +91,7 @@
           </div> -->
         </div>
       </div>
-      
+
 
       <div style="overflow-x:auto;" *ngIf="this.role === 'tradingClient'">
       <table id="client">

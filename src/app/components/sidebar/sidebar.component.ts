@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import {Flutterwave, InlinePaymentOptions, PaymentSuccessResponse} from 'flutterwave-angular-v3';
@@ -31,6 +31,7 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  marketSet = localStorage.getItem('marketCode');
   role = localStorage.getItem('role');
 
   public menuItems: any[];
@@ -68,10 +69,12 @@ export class SidebarComponent implements OnInit {
     callbackContext: this
   };
 
-  constructor(private router: Router, private flutterwave: Flutterwave, private dataSer: DataService) { }
+  constructor(private router: Router, private flutterwave: Flutterwave, private dataSer: DataService) {
+  }
 
   ngOnInit() {
     this.initConfig();
+    console.log('This is to check the set market place', this.marketSet);
     this.menuItems = localStorage.getItem('role') === 'superAdmin' ? ROUTESADMIN.filter(menuItem => menuItem) : ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
@@ -155,13 +158,6 @@ export class SidebarComponent implements OnInit {
     const date = new Date();
     return date.getTime().toString();
   }
-
-  getTradingMemberDetail() {
-    const tradingMemberCode = localStorage.getItem('name');
-
-    return this.dataSer.getSpecificTradingMember(tradingMemberCode);
-  }
-
   public beforeChange($event: NgbPanelChangeEvent) {
 
     if ($event.panelId === 'preventchange-2') {
@@ -171,6 +167,13 @@ export class SidebarComponent implements OnInit {
     if ($event.panelId === 'preventchange-3' && $event.nextState === false) {
       $event.preventDefault();
     }
+  }
+
+
+  getTradingMemberDetail() {
+    const tradingMemberCode = localStorage.getItem('name');
+
+    return this.dataSer.getSpecificTradingMember(tradingMemberCode);
   }
 
 }

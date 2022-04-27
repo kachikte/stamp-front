@@ -10,7 +10,7 @@
         <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
         <select class="form-control" name="market" id="m" #selectType
                 (change)="setNavigation(selectType.value)"
-                style="margin: 10px; width: 100%; border-style: none;" ngModel>
+                style="margin: 10px; width: 100%; border-style: none;" [(ngModel)]="ngSel">
           <option *ngFor="let type of typeArr" value="{{type.key}}"
           >{{type.value}}</option>
         </select>

@@ -9,6 +9,8 @@ import {Party} from '../../model/Party';
 import {Router} from '@angular/router';
 import {DataService} from '../../services/data/data.service';
 
+import { HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-market-dashboard',
   templateUrl: './market-dashboard.component.html',
@@ -45,6 +47,7 @@ export class MarketDashboardComponent implements OnInit {
   submitMarketCode(mark: string) {
     localStorage.removeItem('marketCode');
     localStorage.setItem('marketCode', mark);
+    this.dataSer.toggleMarketChange(localStorage.getItem('marketCode'));
     if (this.role === 'superAdmin' || this.role === 'tradingMember') {
       this.router.navigate(['/dashboard']);
     } else if (this.role === 'tradingClient') {
@@ -54,6 +57,11 @@ export class MarketDashboardComponent implements OnInit {
 
   reDir() {
     this.router.navigate(['/login']);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed');
   }
 
 }

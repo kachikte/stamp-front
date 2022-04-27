@@ -4,12 +4,16 @@ import * as dataOne from '../../../assets/data/dataOne.json';
 import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from 'rxjs';
+import {map, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  marketType: string;
+
+  marketChange: Subject<string> = new Subject<string>();
 
   markt: string;
   market = localStorage.getItem('role') === 'superAdmin' ? dataOne : data;
@@ -25,6 +29,13 @@ export class DataService {
   constructor(private http: HttpClient) {
     this.getStakeHolderProfile('sisb@sisb.com');
     this.getContractNotesTaxable('sisb@sisb.com', 'SISB', 'NGX', 'MARCH 2022');
+    this.marketChange.subscribe(value => {
+      this.marketType = value;
+    });
+  }
+
+  toggleMarketChange(marketCode: string) {
+    this.marketChange.next(marketCode);
   }
 
   getAdminMarket() {

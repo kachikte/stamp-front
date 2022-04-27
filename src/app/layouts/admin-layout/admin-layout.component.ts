@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../services/data/data.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
+  market = '';
 
-  constructor() { }
+  constructor(private dataSer: DataService) {
+
+    this.market = this.dataSer.marketType;
+  }
 
   ngOnInit() {
+    console.log('does this work???????/');
   }
 
 }
