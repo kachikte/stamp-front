@@ -23,6 +23,8 @@ export class DataService {
   partiesArr: any[] = [];
 
   constructor(private http: HttpClient) {
+    this.getStakeHolderProfile('sisb@sisb.com');
+    this.getContractNotesTaxable('sisb@sisb.com', 'SISB', 'NGX', 'MARCH 2022');
   }
 
   getAdminMarket() {
@@ -475,14 +477,13 @@ export class DataService {
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
-    const url = 'http://localhost:4200/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
+    const url = 'http://localhost:8080/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
     //   this.http.get(url, {headers}).subscribe(response => {
     //     // tslint:disable-next-line:forin
     //     for (const responseKey in response) {
     //       console.log();
     //     }
     // });
-
 
 
     this.http.get(url, {headers})
@@ -492,7 +493,7 @@ export class DataService {
           // console.log(responseData['keyValueCollection']);
           // tslint:disable-next-line:forin
           const vaa = responseData['keyValueCollection'].map(
-            av =>  result.push(av)
+            av => result.push(av)
           );
 
           // console.log('JUST KEY', vaa);
@@ -510,5 +511,67 @@ export class DataService {
   }
 
 
+  getStakeHolderProfile(emailAddress: string) {
 
+    // let result = [];
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const url = 'http://localhost:8080/getStakeHolderProfile/?emailAddress=' + emailAddress + '&returnType=json';
+
+    this.http.get(url, {headers})
+      .pipe(map(
+        responseData => {
+          // tslint:disable-next-line:forin
+          // const vaa = responseData['keyValueCollection'].map(
+          //   av =>  result.push(av)
+          // );
+          //
+          // result = responseData['keyValueCollection'];
+
+          console.log(responseData);
+        }
+      ))
+      .subscribe(responseData => {
+        // console.log(responseData);
+      });
+
+    // return result;
+  }
+
+  getContractNotesTaxable(emailAddress: string, requesterCode: string, marketCode: string, monthAndYear: string) {
+
+    // let result = [];
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const url = 'http://localhost:8080/getContractNotesTaxable/?emailAddress=' + emailAddress + '&requesterCode=' + requesterCode + '&marketCode=' + marketCode + '&monthAndYear=' + monthAndYear + '&returnType=json';
+
+    this.http.get(url, {headers})
+      .pipe(map(
+        responseData => {
+          // tslint:disable-next-line:forin
+          // const vaa = responseData['keyValueCollection'].map(
+          //   av =>  result.push(av)
+          // );
+          //
+          // result = responseData['keyValueCollection'];
+
+          console.log(responseData);
+        }
+      ))
+      .subscribe(responseData => {
+        // console.log(responseData);
+      });
+
+    // return result;
+  }
 }

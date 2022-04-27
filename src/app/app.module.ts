@@ -20,6 +20,11 @@ import { FlutterwaveModule } from 'flutterwave-angular-v3';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { environment } from '../environments/environment';
 
+import { ToastrModule } from 'ngx-toastr';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { SelectPartComponent } from './pages/selectPart/select-part/select-part.component';
+
 
 
 @NgModule({
@@ -35,12 +40,17 @@ import { environment } from '../environments/environment';
     IgxHierarchicalGridModule,
     NgxPayPalModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    SelectPartComponent
       ],
   providers: [
     DataService,

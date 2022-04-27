@@ -2,6 +2,9 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LoginService} from '../../services/login/login.service';
+import {NotificationsService} from '../../services/notifications/notifications.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {SelectPartComponent} from '../selectPart/select-part/select-part.component';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   token: string|undefined;
 
-  constructor(private router: Router, private loginSer: LoginService) {
+  constructor(private router: Router, private loginSer: LoginService, private notification: NotificationsService, public matDialog: MatDialog) {
     this.token = undefined;
   }
 
@@ -37,8 +40,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSer.checkLogin(form.controls.username.value, form.controls.password.value) ? this.router.navigate(['/market-dashboard']) : this.router.navigate(['login']);
   }
 
-  signUp(id: number) {
-    this.router.navigate(['signup', id]);
+  showDia() {
+    this.notification.showSuccess();
+
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = 'select-part-component';
+    // dialogConfig.height = '350px';
+    // dialogConfig.width = '600px';
+    dialogConfig.height = '250px';
+    dialogConfig.width = '400px';
+    const modalDialog = this.matDialog.open(SelectPartComponent, dialogConfig);
   }
 
 }
