@@ -1,0 +1,23 @@
+<div class="row" style="text-align: center; padding: 10px;">
+  <div>
+    Please select Signup type
+  </div>
+</div>
+<div class="row" style="text-align: center; padding: 10px;">
+  <form role="form">
+    <div class="form-group mb-3">
+      <div class="input-group input-group-alternative">
+        <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
+        <select class="form-control" name="market" id="m" #selectType
+                (change)="setNavigation(selectType.value)"
+                style="margin: 10px; width: 100%; border-style: none;" ngModel>
+          <option *ngFor="let type of typeArr" value="{{type.key}}"
+          >{{type.value}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row" style="text-align: center; padding: 10px;">
+  <button (click)="closeModal()" class="btn btn-warning">Close</button>
+</div>
