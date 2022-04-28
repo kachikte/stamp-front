@@ -45,10 +45,10 @@
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
-                <select class="form-control"  name="tradingMembers" id="tm" #selectTm
+                <select class="form-control"  name="tradingMembers" id="tmB" #selectTm
                         style="margin: 10px; width: 100%; border-style: none;">
-                  <option *ngFor="let mem of memberArr" value="{{mem}}"
-                          [selected]="mem==='Select ...'">{{mem}}</option>
+                  <option *ngFor="let mem of memberArr" value="{{mem.key}}"
+                          >{{mem.value}}</option>
                 </select>
               </div>
             </div>
@@ -161,7 +161,8 @@
             Sign up to get instant access
           </div>
           <div style="margin: 5px;"></div>
-          <form role="form" (ngSubmit)="submit(s)" #s="ngForm">
+<!--          <form role="form" (ngSubmit)="submit(s)" #s="ngForm">-->
+          <form role="form">
 
 
             <div style="text-align: left;">Broker <sup style="color: red;">*</sup></div>
@@ -171,8 +172,8 @@
                 <select class="form-control"  name="tradingMembers" id="tm" #selectTm
                         (change)="setCompanyList(selectC.value.toUpperCase())"
                         style="margin: 10px; width: 100%; border-style: none;">
-                  <option *ngFor="let mem of memberArr" value="{{mem}}"
-                          [selected]="mem==='Select ...'">{{mem}}</option>
+                  <option *ngFor="let mem of memberArr" value="{{mem.key}}"
+                         >{{mem.value}}</option>
                 </select>
               </div>
             </div>

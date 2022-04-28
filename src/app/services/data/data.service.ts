@@ -27,8 +27,8 @@ export class DataService {
   partiesArr: any[] = [];
 
   constructor(private http: HttpClient) {
-    this.getStakeHolderProfile('sisb@sisb.com');
-    this.getContractNotesTaxable('sisb@sisb.com', 'SISB', 'NGX', 'MARCH 2022');
+    // this.getStakeHolderProfile('sisb@sisb.com');
+    // this.getContractNotesTaxable('sisb@sisb.com', 'SISB', 'NGX', 'MARCH 2022');
     this.marketChange.subscribe(value => {
       this.marketType = value;
     });

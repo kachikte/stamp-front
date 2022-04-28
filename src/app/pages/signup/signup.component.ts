@@ -74,11 +74,12 @@ export class SignupComponent implements OnInit {
 
   submit(form: NgForm) {
     console.log(form.controls);
-    console.log(form.controls.market.value);
-    console.log(form.controls.tradingMembers.value);
-    console.log(form.controls.password.value);
-    console.log(form.controls.secretQuestions.value);
-    console.log(form.controls.answer.value);
+    // console.log(form.controls.market.value);
+    // console.log(form.controls.tradingMembers.value);
+    // console.log(form.controls.password.value);
+    // // console.log(form.controls.confirmPassword.value);
+    // console.log(form.controls.secretQuestions.value);
+    // console.log(form.controls.answer.value);
   }
 
 }
