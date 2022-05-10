@@ -13,6 +13,8 @@ export class DataService {
 
   loginData: Subject<any> = new Subject<any>();
 
+  signUpData: Subject<any> = new Subject<any>();
+
   marketType: string;
 
   marketChange: Subject<string> = new Subject<string>();
@@ -523,6 +525,34 @@ export class DataService {
     return result;
   }
 
+  stakeHolderRegistration(marketCode: string, requesterCode: string, password: string, confirmPassword: string, secretQuestion: string, answer: string) {
+
+    // let result = [];
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    // tslint:disable-next-line:max-line-length
+    const url = 'http://localhost:8080/stakeholderRegistration/?marketCode=' + marketCode + '&requesterCode=' + requesterCode + '&passWord=' + password + '&confirmPassWord=' + confirmPassword + '&secretQuestion=' + secretQuestion + '&answer=' + answer;
+
+    this.http.get(url, {headers})
+      .pipe(map(
+        responseData => {
+
+          console.log('SignUp Data ', responseData);
+
+          this.signUpData.next(responseData);
+        }
+      ))
+      .subscribe(responseData => {
+        // console.log(responseData);
+      });
+
+    // return result;
+  }
 
   getStakeHolderProfile(emailAddress: string, password: string) {
 

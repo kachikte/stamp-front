@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {DataService} from '../../services/data/data.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+
 // import {writeJsonFile} from 'write-json-file';
 
 @Component({
@@ -15,9 +17,9 @@ export class SignupComponent implements OnInit {
 
   marketSel = 'Select...';
 
-  ngSelect =  'Select ...';
+  ngSelect = 'Select ...';
 
-  ngSelectAns =  'Select ...';
+  ngSelectAns = 'Select ...';
 
   marketArr = ['Select ...', 'FMDQ', 'NASD', 'NCX', 'NGX', 'AFEX'];
 
@@ -27,7 +29,8 @@ export class SignupComponent implements OnInit {
 
   secretQuestion = ['Select ...', 'Where did you grow up', 'What was your primary school'];
 
-  constructor(private dataSer: DataService, private activatedRoute: ActivatedRoute) { }
+  constructor(private dataSer: DataService, private activatedRoute: ActivatedRoute, private router: Router, private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
 
@@ -80,6 +83,14 @@ export class SignupComponent implements OnInit {
     // // console.log(form.controls.confirmPassword.value);
     // console.log(form.controls.secretQuestions.value);
     // console.log(form.controls.answer.value);
+    // tslint:disable-next-line:max-line-length
+    this.dataSer.stakeHolderRegistration(form.controls.market.value, form.controls.tradingMembers.value, form.controls.password.value, form.controls.confirmPassword.value, form.controls.secretQuestions.value, form.controls.answer.value);
+
+    this.dataSer.signUpData.subscribe(value => {
+      // tslint:disable-next-line:no-unused-expression
+      value['keyValueCollection'][0]['value'] !== 'N_A' ? this.router.navigate(['login']) : this.toastr.warning('Please fill all fields', 'Invalid Input');
+      console.log('Value I am checking ', value['keyValueCollection'][0]['value']);
+    });
   }
 
 }

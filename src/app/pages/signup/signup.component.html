@@ -26,7 +26,7 @@
                 <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
                 <select class="form-control" name="market" id="m" #selectM
                         (change)="setTradingMemberList(selectM.value.toUpperCase())"
-                        style="margin: 10px; width: 100%; border-style: none;">
+                        style="margin: 10px; width: 100%; border-style: none;" ngModel >
                   <option *ngFor="let mar of marketArr" value="{{mar}}"
                           [selected]="mar=='Select ...'">{{mar}}</option>
                 </select>
@@ -46,7 +46,7 @@
               <div class="input-group input-group-alternative">
                 <!-- <select name="tradingMembers" id="tm" #selectTm (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
                 <select class="form-control"  name="tradingMembers" id="tmB" #selectTm
-                        style="margin: 10px; width: 100%; border-style: none;">
+                        style="margin: 10px; width: 100%; border-style: none;" ngModel >
                   <option *ngFor="let mem of memberArr" value="{{mem.key}}"
                           >{{mem.value}}</option>
                 </select>
@@ -93,35 +93,35 @@
             </div>
 
 
-            <!--            <div class="row">-->
-            <!--              <div class="col-lg-5">-->
-            <!--                <div style="text-align: left;">Secret Question <sup style="color: red;">*</sup></div>-->
-            <!--                <div class="form-group mb-3">-->
-            <!--                  <div class="input-group input-group-alternative">-->
-            <!--                    &lt;!&ndash; <select name="secretQuestions" id="sq" #selectSq (change)="setCode(selectTm.value)" style="margin: 10px;"> &ndash;&gt;-->
-            <!--                    <select class="form-control"  name="secretQuestions" id="sq" #selectSq-->
-            <!--                            style="margin: 10px; width: 100%; border-style: none;">-->
-            <!--                      <option *ngFor="let seQu of secretQuestion" value="{{seQu}}"-->
-            <!--                              [selected]="seQu==='Select ...'">{{seQu}}</option>-->
-            <!--                    </select>-->
-            <!--                  </div>-->
-            <!--                </div>-->
-            <!--              </div>-->
+                        <div class="row">
+                          <div class="col-lg-5">
+                            <div style="text-align: left;">Secret Question <sup style="color: red;">*</sup></div>
+                            <div class="form-group mb-3">
+                              <div class="input-group input-group-alternative">
+                                <!-- <select name="secretQuestions" id="sq" #selectSq (change)="setCode(selectTm.value)" style="margin: 10px;"> -->
+                                <select class="form-control"  name="secretQuestions" id="sq" #selectSq
+                                        style="margin: 10px; width: 100%; border-style: none;" ngModel >
+                                  <option *ngFor="let seQu of secretQuestion" value="{{seQu}}"
+                                          [selected]="seQu==='Select ...'">{{seQu}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
 
-            <!--              <div class="col-lg-2"></div>-->
+                          <div class="col-lg-2"></div>
 
-            <!--              <div class="col-lg-5">-->
-            <!--                <div style="text-align: left;">Answer <sup style="color: red;">*</sup></div>-->
-            <!--                <div class="form-group mb-3">-->
-            <!--                  <div class="input-group input-group-alternative">-->
-            <!--                    <div class="input-group-prepend">-->
-            <!--                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>-->
-            <!--                    </div>-->
-            <!--                    <input class="form-control" placeholder="Answer" type="text" ngModel name="answer">-->
-            <!--                  </div>-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--            </div>-->
+                          <div class="col-lg-5">
+                            <div style="text-align: left;">Answer <sup style="color: red;">*</sup></div>
+                            <div class="form-group mb-3">
+                              <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Answer" type="text" ngModel name="answer">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
 
             <div class="custom-control custom-control-alternative custom-checkbox">
