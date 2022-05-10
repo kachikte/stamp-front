@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
   tLength = 0;
   pLength = 0;
 
-  tradingMemberA = this.role === 'tradingMember' ? this.getTradingMemberDetail() : '';
+  tradingMemberA = this.role === 'TRADING_MEMBER' ? this.getTradingMemberDetail() : '';
 
 
   public payPalConfig?: IPayPalConfig;
@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit {
       this.tLength = this.dataSer.getTrades().length;
       this.partiesArr = this.dataSer.partiesArr;
       this.pLength = this.dataSer.getParties().length;
-    } else if (this.role === 'tradingMember') {
+    } else if (this.role === 'TRADING_MEMBER') {
       this.selIndicator = 1;
       this.tradingMember = this.getTradingMemberDetail();
       this.tradingClientsSet = this.dataSer.getTradingMemberSelectionData(this.name);
@@ -170,7 +170,7 @@ export class DashboardComponent implements OnInit {
   }
 
   back() {
-    if (this.role === 'superAdmin' || this.role === 'tradingMember') {
+    if (this.role === 'superAdmin' || this.role === 'TRADING_MEMBER') {
       this.router.navigate(['market-dashboard']);
     } else if (this.role === 'tradingClient') {
       this.router.navigate(['member-dashboard']);

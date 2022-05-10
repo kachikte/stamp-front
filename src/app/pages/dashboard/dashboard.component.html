@@ -37,7 +37,7 @@
 
       </div>
 
-      <div style="overflow-x:auto;" *ngIf="this.role === 'tradingMember'">
+      <div style="overflow-x:auto;" *ngIf="this.role === 'TRADING_MEMBER'">
       <table id="member">
         <tr>
           <td>Trading Clients</td>
@@ -59,9 +59,9 @@
         </tr>
       </table>
 
-        <ngb-accordion (panelChange)="beforeChange($event)" *ngIf="role === 'tradingMember'">
+        <ngb-accordion (panelChange)="beforeChange($event)" *ngIf="role === 'TRADING_MEMBER'">
 
-          <ngb-panel id="preventchange-1" title="I want to pay with Flutterwave - {{ role != 'tradingMember' ? 0 : tradingMemberA.totalStampDutyFees | number: '1.1-2'}}">
+          <ngb-panel id="preventchange-1" title="I want to pay with Flutterwave - {{ role != 'TRADING_MEMBER' ? 0 : tradingMemberA.totalStampDutyFees | number: '1.1-2'}}">
             <ng-template ngbPanelContent>
               <a (click)="makePayment()"><img src="./assets/img/brand/flutterwave-payment-removebg-preview.png" class="navbar-brand-img" alt="..."></a>
               <!--            <button class="btn btn-primary" *ngIf="role==='tradingMember'" (click)="makePayment()" style="font-size: 15px">Make Payment<br></button>-->
@@ -70,7 +70,7 @@
         </ngb-accordion>
       </div>
 
-      <div class="row" *ngIf="this.role === 'tradingMember'">
+      <div class="row" *ngIf="this.role === 'TRADING_MEMBER'">
         <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
           <!-- <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
@@ -170,7 +170,7 @@
 
       <div class="card shadow" *ngIf="role !== 'superAdmin'" style="padding: 25px;">
 
-        <div *ngIf="role==='tradingMember'">
+        <div *ngIf="role==='TRADING_MEMBER'">
           <p style="display: inline; padding: 10px;">Select a Trading Client</p>
           <select style="display: inline; margin: 10px;" name="tradingClients" id="tcs" #selectTc (change)="setCode(selectTc.value)">
             <option *ngFor="let tCli of tradingClientsSet" value="{{tCli}}"

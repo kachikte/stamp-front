@@ -11,6 +11,8 @@ import {map, Subject} from 'rxjs';
 })
 export class DataService {
 
+  loginData: Subject<any> = new Subject<any>();
+
   marketType: string;
 
   marketChange: Subject<string> = new Subject<string>();
@@ -522,7 +524,7 @@ export class DataService {
   }
 
 
-  getStakeHolderProfile(emailAddress: string) {
+  getStakeHolderProfile(emailAddress: string, password: string) {
 
     // let result = [];
 
@@ -532,7 +534,7 @@ export class DataService {
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
-    const url = 'http://localhost:8080/getStakeHolderProfile/?emailAddress=' + emailAddress + '&returnType=json';
+    const url = 'http://localhost:8080/getStakeHolderProfile/?emailAddress=' + emailAddress + '&password=' + password + '&returnType=json';
 
     this.http.get(url, {headers})
       .pipe(map(
@@ -544,7 +546,9 @@ export class DataService {
           //
           // result = responseData['keyValueCollection'];
 
-          console.log(responseData);
+          console.log('Login Data ', responseData);
+
+          this.loginData.next(responseData);
         }
       ))
       .subscribe(responseData => {
