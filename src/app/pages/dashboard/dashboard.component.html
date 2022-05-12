@@ -63,7 +63,7 @@
 
           <ngb-panel id="preventchange-1" title="I want to pay with Flutterwave - {{ role != 'TRADING_MEMBER' ? 0 : tradingMemberA.totalStampDutyFees | number: '1.1-2'}}">
             <ng-template ngbPanelContent>
-              <a (click)="makePayment()"><img src="./assets/img/brand/flutterwave-payment-removebg-preview.png" class="navbar-brand-img" alt="..."></a>
+              <a (click)="payViaPromise()"><img src="./assets/img/brand/flutterwave-payment-removebg-preview.png" class="navbar-brand-img" alt="..."></a>
               <!--            <button class="btn btn-primary" *ngIf="role==='tradingMember'" (click)="makePayment()" style="font-size: 15px">Make Payment<br></button>-->
             </ng-template>
           </ngb-panel>

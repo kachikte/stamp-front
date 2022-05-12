@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('role', value['stakeComputationLevel']);
         localStorage.setItem('markets', JSON.stringify(value['marketPlaces']));
         localStorage.setItem('monthYearCombos', JSON.stringify(value['monthYearCombos']));
+        localStorage.setItem('emailAddress', value['emailAddress']);
         this.router.navigate(['/market-dashboard']);
       } else {
         this.router.navigate(['login']);

@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col">
                   <p>
-                    <select name="trades" id="ts">
+                    <select name="trades" id="ts" #selMonthYear (change)="selectMonthYear(selMonthYear.value.toUpperCase())">
                       <option *ngFor="let mn of monthYearCombos" value="{{mn}}" [selected]="mn==='Select ...'">{{mn}}</option>
                     </select>
                   </p>

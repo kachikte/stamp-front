@@ -88,7 +88,7 @@ export class SignupComponent implements OnInit {
 
     this.dataSer.signUpData.subscribe(value => {
       // tslint:disable-next-line:no-unused-expression
-      value['keyValueCollection'][0]['value'] !== 'N_A' ? this.router.navigate(['login']) : this.toastr.warning('Please fill all fields', 'Invalid Input');
+      value['keyValueCollection'][0]['value'] !== 'N_A' ? this.router.navigate(['successpage']) : this.toastr.warning('Please fill all fields', 'Invalid Input');
       console.log('Value I am checking ', value['keyValueCollection'][0]['value']);
     });
   }

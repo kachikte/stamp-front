@@ -24,6 +24,8 @@ export class MarketDashboardComponent implements OnInit {
   monthYearCombos = JSON.parse(localStorage.getItem('monthYearCombos'));
   markets = JSON.parse(localStorage.getItem('markets'));
 
+  monthYearVal = '';
+
 
   constructor(private router: Router, private dataSer: DataService) {
   }
@@ -44,11 +46,19 @@ export class MarketDashboardComponent implements OnInit {
 
   }
 
+  selectMonthYear(monthYear: string) {
+    localStorage.removeItem('singleMonthYear');
+    localStorage.setItem('singleMonthYear', monthYear);
+    this.monthYearVal = monthYear;
+  }
+
   submitMarketCode(mark: string) {
+    console.log('This is the month year ', this.monthYearVal);
     localStorage.removeItem('marketCode');
     localStorage.setItem('marketCode', mark);
     this.dataSer.toggleMarketChange(localStorage.getItem('marketCode'));
     if (this.role === 'superAdmin' || this.role === 'TRADING_MEMBER') {
+      this.dataSer.getContractNotesTaxable(localStorage.getItem('emailAddress'), localStorage.getItem('name'), mark, this.monthYearVal);
       this.router.navigate(['/dashboard']);
     } else if (this.role === 'tradingClient') {
       this.router.navigate(['/member-dashboard']);
