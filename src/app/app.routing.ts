@@ -8,10 +8,12 @@ import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {LoginComponent} from './pages/login/login.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import {SuccesspageComponent} from './pages/successpage/successpage.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup/:id', component: SignupComponent},
+  {path: 'successpage', component: SuccesspageComponent},
   {
     path: '',
     redirectTo: 'market-dashboard',

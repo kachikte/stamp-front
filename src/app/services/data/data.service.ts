@@ -11,6 +11,8 @@ import {map, Subject} from 'rxjs';
 })
 export class DataService {
 
+  marketService: any = {};
+
   loginData: Subject<any> = new Subject<any>();
 
   signUpData: Subject<any> = new Subject<any>();
@@ -112,9 +114,12 @@ export class DataService {
   }
 
   getData() {
+    this.marketService = JSON.parse(localStorage.getItem('portalData'));
+
     const marketData: any[] = [];
     // @ts-ignore
-    for (const market of this.market.marketData.market) {
+    // for (const market of this.market.marketData.market) {
+    for (const market of this.marketService['market']) {
       console.log('ggggggggataaaaaaaaaaaaaaaaa');
       console.log(market);
       if (market.marketPlaceCode.toLowerCase() === localStorage.getItem('marketCode').toLowerCase()) {
@@ -230,8 +235,17 @@ export class DataService {
   getSpecificTradingMember(tradingMemberCode: string) {
     // tslint:disable-next-line:prefer-const
     let tradingMember: any;
+
+    const markRec = this.getData();
     // @ts-ignore
-    for (const tradingMem of this.market.marketData.market[0].tradingMembers) {
+    // for (const tradingMem of this.market.marketData.market[0].tradingMembers) {
+    for (const tradingMem of markRec[0].tradingMembers) {
+
+
+      console.log('START DEBUGGING ', tradingMem);
+
+      // console.log('START DEBUGGING ONE', this.getData());
+
       if (tradingMem.tradingMemberCode.toLowerCase() === tradingMemberCode.toLowerCase()) {
         tradingMember = tradingMem;
       }
@@ -354,8 +368,11 @@ export class DataService {
   getTradingMemberSelectionData(tradingMemberCode: string) {
 
     const tradingMember: any[] = [];
+
+    const markRec = this.getData();
     // @ts-ignore
-    for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
+    // for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
+    for (const tradingMm of markRec[0].tradingMembers) {
       if (tradingMm.tradingMemberCode.toLowerCase() === tradingMemberCode.toLowerCase()) {
         console.log(tradingMm.tradingClients);
         const tradM = tradingMm.tradingClients;
@@ -382,12 +399,6 @@ export class DataService {
           for (const trader of tradingCc.accountTrades) {
             accountTrades.push(trader.accountNumber);
           }
-
-          // tradingClient.push(tradingCc.fistName.toUpperCase().concat(' ').concat(tradingCc.lastName.toUpperCase()));
-          //
-          // console.log('CLIENTSSSS');
-          // console.log(tradingClient);
-          // break;
         }
       }
     }
@@ -397,90 +408,6 @@ export class DataService {
     return accountTradeSet;
 
   }
-
-  // getTradeSelectionData(securityCode: string) {
-  //
-  //   let k = 0;
-  //   const tradesk: any[] = [];
-  //   // @ts-ignore
-  //   for (const tradingMm of this.market.marketData.market[0].tradingMembers) {
-  //     for (const tradingCc of tradingMm.tradingClients) {
-  //       for (const tra of tradingCc.trades) {
-  //         if (tra.securityCode === securityCode) {
-  //           k = 1;
-  //           const party = tra.parties;
-  //           console.log('PARRRRRTTTIESSS');
-  //           console.log(party);
-  //           console.log('PARRRRRTTTIESSS');
-  //           console.log(tradesk);
-  //           for (const par of party) {
-  //             tradesk.push(par.partyId);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //
-  //   tradesk.push('Select ...');
-  //   const tradingPartySet = new Set(tradesk);
-  //
-  //   return tradingPartySet;
-  //
-  // }
-
-
-  // getTradingMembersController() {
-  //   const url = 'http://50.116.33.99:8080/AnalyticsServices/tradeContractNotes/getTradingMembers?marketCode=' + 'NGX' + '&returnType=json';
-  //
-  //   console.log(url);
-  //     // tslint:disable-next-line:max-line-length
-  //   this.http.get(url).subscribe(response => {
-  //     console.log(response);
-  //   });
-  // }
-
-  // getTradingMembersController(marketCode: string) {
-  //
-  //   const headers = new HttpHeaders()
-  //     .append('Content-Type', 'application/json')
-  //     // .append('Access-Control-Allow-Headers', 'Content-Type')
-  //     .append('Access-Control-Allow-Methods', 'GET')
-  //     .append('Access-Control-Allow-Origin', '*');
-  //
-  //   const url = 'http://localhost:4040/notes/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
-  //   //   this.http.get(url, {headers}).subscribe(response => {
-  //   //     // tslint:disable-next-line:forin
-  //   //     for (const responseKey in response) {
-  //   //       console.log();
-  //   //     }
-  //   // });
-  //
-  //
-  //
-  //   this.http.get(url, {headers})
-  //     .pipe(map(
-  //     responseData => {
-  //       let postArray: [] = [];
-  //       // console.log(responseData['keyValueCollection']);
-  //       // tslint:disable-next-line:forin
-  //       const vaa = responseData['keyValueCollection'].map(
-  //         av =>  av.key
-  //       );
-  //
-  //       // console.log('JUST KEY', vaa);
-  //       //
-  //       // console.log('ENTIRE COLLECTION', responseData['keyValueCollection']);
-  //
-  //       postArray = responseData['keyValueCollection'];
-  //
-  //       return 'a';
-  //     }
-  //   ))
-  //     .subscribe(responseData => {
-  //       // console.log(responseData);
-  //     });
-  // }
-
 
   getTradingMembersController(marketCode: string) {
 
@@ -492,34 +419,19 @@ export class DataService {
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
-    const url = 'http://localhost:8080/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
-    //   this.http.get(url, {headers}).subscribe(response => {
-    //     // tslint:disable-next-line:forin
-    //     for (const responseKey in response) {
-    //       console.log();
-    //     }
-    // });
-
+    const url = 'http://localhost:7070/getTradingMembersEx?marketCode=' + marketCode + '&returnType=json';
 
     this.http.get(url, {headers})
       .pipe(map(
         responseData => {
-          // let postArray: [] = [];
-          // console.log(responseData['keyValueCollection']);
-          // tslint:disable-next-line:forin
           const vaa = responseData['keyValueCollection'].map(
             av => result.push(av)
           );
-
-          // console.log('JUST KEY', vaa);
-          //
-          // console.log('ENTIRE COLLECTION', responseData['keyValueCollection']);
 
           result = responseData['keyValueCollection'];
         }
       ))
       .subscribe(responseData => {
-        // console.log(responseData);
       });
 
     return result;
@@ -531,12 +443,11 @@ export class DataService {
 
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
-      // .append('Access-Control-Allow-Headers', 'Content-Type')
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
     // tslint:disable-next-line:max-line-length
-    const url = 'http://localhost:8080/stakeholderRegistration/?marketCode=' + marketCode + '&requesterCode=' + requesterCode + '&passWord=' + password + '&confirmPassWord=' + confirmPassword + '&secretQuestion=' + secretQuestion + '&answer=' + answer;
+    const url = 'http://localhost:7070/stakeholderRegistration/?marketCode=' + marketCode + '&requesterCode=' + requesterCode + '&passWord=' + password + '&confirmPassWord=' + confirmPassword + '&secretQuestion=' + secretQuestion + '&answer=' + answer;
 
     this.http.get(url, {headers})
       .pipe(map(
@@ -548,10 +459,7 @@ export class DataService {
         }
       ))
       .subscribe(responseData => {
-        // console.log(responseData);
       });
-
-    // return result;
   }
 
   getStakeHolderProfile(emailAddress: string, password: string) {
@@ -564,7 +472,7 @@ export class DataService {
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
-    const url = 'http://localhost:8080/getStakeHolderProfile/?emailAddress=' + emailAddress + '&password=' + password + '&returnType=json';
+    const url = 'http://localhost:7070/getStakeHolderProfile/?emailAddress=' + emailAddress + '&password=' + password + '&returnType=json';
 
     this.http.get(url, {headers})
       .pipe(map(
@@ -590,33 +498,52 @@ export class DataService {
 
   getContractNotesTaxable(emailAddress: string, requesterCode: string, marketCode: string, monthAndYear: string) {
 
-    // let result = [];
-
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
-      // .append('Access-Control-Allow-Headers', 'Content-Type')
       .append('Access-Control-Allow-Methods', 'GET')
       .append('Access-Control-Allow-Origin', '*');
 
-    const url = 'http://localhost:8080/getContractNotesTaxable/?emailAddress=' + emailAddress + '&requesterCode=' + requesterCode + '&marketCode=' + marketCode + '&monthAndYear=' + monthAndYear + '&returnType=json';
+    const url = 'http://localhost:7070/getContractNotesTaxable/?emailAddress=' + emailAddress + '&requesterCode=' + requesterCode + '&marketCode=' + marketCode + '&monthAndYear=' + monthAndYear;
 
     this.http.get(url, {headers})
       .pipe(map(
         responseData => {
-          // tslint:disable-next-line:forin
-          // const vaa = responseData['keyValueCollection'].map(
-          //   av =>  result.push(av)
-          // );
-          //
-          // result = responseData['keyValueCollection'];
+          console.log('EMAIL ', emailAddress);
+          console.log('REQUESTER ', requesterCode);
+          console.log('MARKET ', marketCode);
+          console.log('MONTH YEAR ', monthAndYear);
+          console.log('PORTAL DATA =====> ', responseData);
 
-          console.log(responseData);
+
+          localStorage.setItem('portalData', JSON.stringify(responseData));
+
         }
       ))
       .subscribe(responseData => {
-        // console.log(responseData);
       });
+  }
 
-    // return result;
+  getPaymentDetails(emailAddress: string, requesterCode: string, marketCode: string, monthAndYear: string, paymentReference: string, paymentValue: number) {
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    // tslint:disable-next-line:max-line-length
+    const url = 'http://localhost:7070/getPaymentDetails/?emailAddress=' + emailAddress + '&requesterCode=' + requesterCode + '&marketCode=' + marketCode + '&monthAndYear=' + monthAndYear + '&paymentReference=' + paymentReference + '&paymentValue=' + paymentValue;
+
+    this.http.get(url, {headers})
+      .pipe(map(
+        responseData => {
+          console.log('EMAIL ', emailAddress);
+          console.log('REQUESTER ', requesterCode);
+          console.log('MARKET ', marketCode);
+          console.log('MONTH YEAR ', monthAndYear);
+          console.log('PAYMENT REFERENCE DATA =====> ', paymentReference);
+        }
+      ))
+      .subscribe(responseData => {
+      });
   }
 }

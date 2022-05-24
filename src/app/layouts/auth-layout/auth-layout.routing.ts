@@ -4,10 +4,12 @@ import { SignupComponent } from 'src/app/pages/signup/signup.component';
 
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
+import {SuccesspageComponent} from '../../pages/successpage/successpage.component';
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'login',          component: LoginComponent },
     { path: 'register',       component: RegisterComponent },
     { path: 'landing',       component: LandingComponent },
-    { path: 'signup',       component: SignupComponent }
+    { path: 'signup',       component: SignupComponent },
+  { path: 'successpage',       component: SuccesspageComponent }
 ];

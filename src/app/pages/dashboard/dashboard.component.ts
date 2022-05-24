@@ -60,6 +60,9 @@ export class DashboardComponent implements OnInit {
   public clicked = true;
   public clicked1 = false;
 
+
+  public loading = false;
+
   tradingMember: any;
   tradingClient: any;
   trade: any;
@@ -88,7 +91,7 @@ export class DashboardComponent implements OnInit {
   paymentData: AsyncPaymentOptions = {
     public_key: this.publicKey,
     tx_ref: this.generateReference(),
-    amount: 10,
+    amount: 10.34,
     // amount: this.role === 'TRADING_MEMBER' ? this.tradingMemberA.totalStampDutyFees : 0,
     currency: 'NGN',
     payment_options: 'card,ussd',
@@ -256,7 +259,7 @@ export class DashboardComponent implements OnInit {
         if (resValue['status'] !== 'successful') {
           this.toastr.warning('Payment Unsuccessful');
         } else {
-          this.dataSer.getPaymentDetails(localStorage.getItem('emailAddress'), this.name, this.marketCodeGlobal, localStorage.getItem('singleMonthYear'), resValue['tx_ref']);
+          this.dataSer.getPaymentDetails(localStorage.getItem('emailAddress'), this.name, this.marketCodeGlobal, localStorage.getItem('singleMonthYear'), resValue['tx_ref'], this.tradingMemberA.totalStampDutyFees);
           // tslint:disable-next-line:max-line-length
           // this.dataSer.getPaymentDetails(localStorage.getItem('emailAddress'), this.name, this.marketCodeGlobal, localStorage.getItem('singleMonthYear'), resValue['tx_ref'], resValue['transaction_id']);
         }

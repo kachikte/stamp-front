@@ -10,6 +10,7 @@ import { RegisterComponent } from '../../pages/register/register.component';
 import {ComponentsModule} from '../../components/components.module';
 import { LandingComponent } from 'src/app/pages/landing/landing.component';
 import { SignupComponent } from 'src/app/pages/signup/signup.component';
+import {SuccesspageComponent} from '../../pages/successpage/successpage.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +23,8 @@ import { SignupComponent } from 'src/app/pages/signup/signup.component';
     LoginComponent,
     RegisterComponent,
     LandingComponent,
-    SignupComponent
+    SignupComponent,
+    SuccesspageComponent
   ]
 })
 export class AuthLayoutModule { }
