@@ -5,6 +5,7 @@ import * as usrs from '../../../assets/data/user-details.json';
 import {Party} from '../../model/Party';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, Subject} from 'rxjs';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -437,6 +438,7 @@ export class DataService {
     return result;
   }
 
+  // tslint:disable-next-line:max-line-length
   stakeHolderRegistration(marketCode: string, requesterCode: string, password: string, confirmPassword: string, secretQuestion: string, answer: string) {
 
     // let result = [];
@@ -523,6 +525,7 @@ export class DataService {
       });
   }
 
+  // tslint:disable-next-line:max-line-length
   getPaymentDetails(emailAddress: string, requesterCode: string, marketCode: string, monthAndYear: string, paymentReference: string, paymentValue: number) {
 
     const headers = new HttpHeaders()
@@ -545,5 +548,48 @@ export class DataService {
       ))
       .subscribe(responseData => {
       });
+  }
+
+  setReport() {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      // .append('Access-Control-Allow-Methods', 'GET')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const body = {
+      'reportType': 'pdf',
+      'certificateNumber': 'certificateNumber',
+      'instrument': 'instrument',
+      'parties': 'parties',
+      'consideration': 'consideration',
+      'stampDutyPaid': 'stampDutyPaid',
+      'issd': 'issd',
+      'beneficiary': 'beneficiary',
+      'beneficiaryTin': 'beneficiaryTin',
+      'decription': 'decription',
+      'dateOfExecution': 'dateOfExecution',
+      'dateOfFiling': 'dateOfFiling',
+      'issuanceDate': 'issuanceDate',
+      'originatingOffice': 'originatingOffice',
+      'emailAddress': 'emailAddress',
+      'tmCode': 'tmCode',
+      'month': 5,
+      'year': '2022'
+    };
+
+    const url = 'http://localhost:7070/getReport/';
+
+    this.http.post<any>(url, body, {headers}).subscribe({});
+  }
+
+
+  getReport() {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const url = 'http://localhost:7070/downloadReport/?emailAddress=sisb@sisb-mail.com&tmCode=SISB&month=5&year=2022';
+
+    this.http.get<any>(url, {headers, responseType: 'blob' as 'json'}).subscribe(blob => saveAs(blob, localStorage.getItem('name') + '-certificate.pdf'));
   }
 }

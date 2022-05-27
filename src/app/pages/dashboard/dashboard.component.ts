@@ -73,6 +73,8 @@ export class DashboardComponent implements OnInit {
   tLength = 0;
   pLength = 0;
 
+  date = new Date();
+
   tradingMemberA = this.role === 'TRADING_MEMBER' ? this.getTradingMemberDetail() : '';
 
 
@@ -260,6 +262,7 @@ export class DashboardComponent implements OnInit {
           this.toastr.warning('Payment Unsuccessful');
         } else {
           this.dataSer.getPaymentDetails(localStorage.getItem('emailAddress'), this.name, this.marketCodeGlobal, localStorage.getItem('singleMonthYear'), resValue['tx_ref'], this.tradingMemberA.totalStampDutyFees);
+          this.dataSer.setReport();
           // tslint:disable-next-line:max-line-length
           // this.dataSer.getPaymentDetails(localStorage.getItem('emailAddress'), this.name, this.marketCodeGlobal, localStorage.getItem('singleMonthYear'), resValue['tx_ref'], resValue['transaction_id']);
         }
@@ -283,6 +286,13 @@ export class DashboardComponent implements OnInit {
     if ($event.panelId === 'preventchange-3' && $event.nextState === false) {
       $event.preventDefault();
     }
+  }
+
+
+  downloadReport() {
+    console.log('This is the month selected ', this.date.getMonth() + 1);
+    console.log('This is the year selected ', this.date.getFullYear());
+    this.dataSer.getReport();
   }
 
 }

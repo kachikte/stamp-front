@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { SelectPartComponent } from './pages/selectPart/select-part/select-part.component';
+import {DatepickerModule} from 'ng2-datepicker';
 
 
 
@@ -44,6 +45,7 @@ import { SelectPartComponent } from './pages/selectPart/select-part/select-part.
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
+    DatepickerModule,
     ToastrModule.forRoot(),
   ],
   declarations: [

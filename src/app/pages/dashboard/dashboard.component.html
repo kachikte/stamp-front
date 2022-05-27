@@ -70,6 +70,11 @@
         </ngb-accordion>
       </div>
 
+      <div>
+        <ngx-datepicker [(ngModel)]="date"></ngx-datepicker>
+        <button class="btn btn-primary" (click)="downloadReport()">Download</button>
+      </div>
+
       <div class="row" *ngIf="this.role === 'TRADING_MEMBER'">
         <div class="col-xl-3 col-lg-6" style="padding-top: 50px">
           <!-- <div class="card card-stats mb-4 mb-xl-0">

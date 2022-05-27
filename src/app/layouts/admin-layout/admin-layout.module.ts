@@ -18,6 +18,7 @@ import {IgxHierarchicalGridModule} from 'igniteui-angular';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {MarketDashboardComponent} from '../../pages/market-dashboard/market-dashboard.component';
 import {MemberDashboardComponent} from '../../pages/member-dashboard/member-dashboard.component';
+import {DatepickerModule} from 'ng2-datepicker';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MemberDashboardComponent} from '../../pages/member-dashboard/member-dash
         ClipboardModule,
         ComponentsModule,
         IgxHierarchicalGridModule,
-        NgxPayPalModule
+        NgxPayPalModule,
+        DatepickerModule
     ],
   declarations: [
     DashboardComponent,
